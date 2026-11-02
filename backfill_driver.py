@@ -21,20 +21,34 @@ STATUS = ROOT / "data" / "backfill_status.json"
 WINDOWS = [(dtime(21, 5), dtime(23, 59)), (dtime(0, 0), dtime(2, 55)), (dtime(4, 5), dtime(5, 40))]
 
 
-def load_windows():
+def _parse_windows(raw):
+    out = []
+    for a, b in raw:
+        ah, am = map(int, a.split(":"))
+        bh, bm = map(int, b.split(":"))
+        if (ah, am) <= (bh, bm):
+            out.append((dtime(ah, am), dtime(bh, bm)))
+        else:  # crosses midnight -> split
+            out.append((dtime(ah, am), dtime(23, 59)))
+            out.append((dtime(0, 0), dtime(bh, bm)))
+    return out
+
+
+def load_windows(now=None):
     p = ROOT / "data" / "windows.json"
     if p.exists():
         try:
-            raw = json.loads(p.read_text())["windows"]
-            out = []
-            for a, b in raw:
-                ah, am = map(int, a.split(":"))
-                bh, bm = map(int, b.split(":"))
-                if (ah, am) <= (bh, bm):
-                    out.append((dtime(ah, am), dtime(bh, bm)))
-                else:  # crosses midnight -> split
-                    out.append((dtime(ah, am), dtime(23, 59)))
-                    out.append((dtime(0, 0), dtime(bh, bm)))
+            d = json.loads(p.read_text())
+            # Optional per-weekday override (Mon=0 .. Sun=6), used to run
+            # all day on weekdays while keeping weekend windows narrow so
+            # keiba production on the same VPS is never disturbed.
+            bw = d.get("by_weekday") or {}
+            key = str((now or datetime.now()).weekday())
+            if key in bw:
+                out = _parse_windows(bw[key])
+                if out:
+                    return out
+            out = _parse_windows(d["windows"])
             if out:
                 return out
         except Exception:
@@ -43,8 +57,9 @@ def load_windows():
 
 
 def in_window(now=None):
-    t = (now or datetime.now()).time()
-    return any(a <= t <= b for a, b in load_windows())
+    dt = now or datetime.now()
+    t = dt.time()
+    return any(a <= t <= b for a, b in load_windows(dt))
 
 
 def month_range():
