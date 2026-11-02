@@ -14,7 +14,9 @@ chmod +x "$BASE/sync_status.sh"
 cp -r "$TMP/systemd" "$BASE/systemd" 2>/dev/null || true
 
 USE_UV=0
-if [ ! -x "$BASE/venv/bin/python" ]; then
+# a venv counts as usable only with BOTH python and pip; a skeleton left by a
+# failed ensurepip run (python only) must be recreated from scratch
+if [ ! -x "$BASE/venv/bin/python" ] || [ ! -x "$BASE/venv/bin/pip" ]; then
   rm -rf "$BASE/venv"
   if python3 -m venv --without-pip "$BASE/venv" 2>/dev/null && [ -x "$BASE/venv/bin/python" ]; then
     curl -fsSL https://bootstrap.pypa.io/get-pip.py | "$BASE/venv/bin/python" - -q
