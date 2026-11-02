@@ -94,6 +94,7 @@ def do_set_windows(cmd):
     wins = cmd.get("windows")
     if not wins:
         return "windows required"
+    DATA.mkdir(parents=True, exist_ok=True)
     (DATA / "windows.json").write_text(json.dumps({"windows": wins}))
     return f"windows set to {wins}"
 
