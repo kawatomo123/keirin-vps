@@ -26,7 +26,8 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 STATE = DATA / "agent_state.json"
 TARBALL = "https://codeload.github.com/kawatomo123/keirin-vps/tar.gz/refs/heads/main"
-CODE_FILES = ["collector.py", "backfill_driver.py", "daily_collect.py", "sync_status.sh"]
+CODE_FILES = ["collector.py", "backfill_driver.py", "daily_collect.py", "sync_status.sh", "agent.py"]
+GH_CONTROL = "https://raw.githubusercontent.com/kawatomo123/keirin-vps/main/control.json"
 
 
 def remote():
@@ -68,7 +69,7 @@ def do_update_code():
                 shutil.copy2(cur, backup / name)
             shutil.copy2(new, cur)
         py = ROOT / "venv" / "bin" / "python"
-        for name in ["collector.py", "backfill_driver.py", "daily_collect.py"]:
+        for name in ["collector.py", "backfill_driver.py", "daily_collect.py", "agent.py"]:
             r = subprocess.run([str(py), "-m", "py_compile", str(ROOT / name)],
                                capture_output=True, text=True)
             if r.returncode != 0:
@@ -95,8 +96,11 @@ def do_set_windows(cmd):
     if not wins:
         return "windows required"
     DATA.mkdir(parents=True, exist_ok=True)
-    (DATA / "windows.json").write_text(json.dumps({"windows": wins}))
-    return f"windows set to {wins}"
+    payload = {"windows": wins}
+    if cmd.get("by_weekday"):
+        payload["by_weekday"] = cmd["by_weekday"]
+    (DATA / "windows.json").write_text(json.dumps(payload))
+    return f"windows set to {wins} by_weekday={'yes' if 'by_weekday' in payload else 'no'}"
 
 
 def do_status():
@@ -120,6 +124,26 @@ ACTIONS = {"update_code": lambda c: do_update_code(),
            "status": lambda c: do_status()}
 
 
+def run_command(cmd, st, outbox):
+    cid = cmd.get("id") or ""
+    if not cid or cid in st["done_ids"]:
+        return
+    action = cmd.get("action")
+    try:
+        if action in ACTIONS:
+            result = ACTIONS[action](cmd)
+        else:
+            result = f"unknown action: {action}"
+    except Exception as e:  # keep agent alive
+        result = f"error: {e!r}"
+    (outbox / f"{cid}.json").write_text(json.dumps(
+        {"id": cid, "action": action, "at": datetime.now().isoformat(timespec="seconds"),
+         "result": result}, ensure_ascii=False, indent=1, default=str))
+    st["done_ids"].append(cid)
+    save_state(st)
+    print(cid, action, "->", str(result)[:120])
+
+
 def main():
     rem = remote()
     if not rem:
@@ -136,23 +160,20 @@ def main():
             cmd = json.loads(f.read_text())
         except Exception:
             continue
-        cid = cmd.get("id") or f.stem
-        if cid in st["done_ids"]:
-            continue
-        action = cmd.get("action")
-        try:
-            if action in ACTIONS:
-                result = ACTIONS[action](cmd)
-            else:
-                result = f"unknown action: {action}"
-        except Exception as e:  # keep agent alive
-            result = f"error: {e!r}"
-        (outbox / f"{cid}.json").write_text(json.dumps(
-            {"id": cid, "action": action, "at": datetime.now().isoformat(timespec="seconds"),
-             "result": result}, ensure_ascii=False, indent=1, default=str))
-        st["done_ids"].append(cid)
-        save_state(st)
-        print(cid, action, "->", str(result)[:120])
+        if isinstance(cmd, dict):
+            run_command(cmd, st, outbox)
+    # GitHub channel: commands committed to control.json in the package repo.
+    # (Files placed in Drive keirin/control from a user account are not
+    # visible to this VPS's drive.file-scoped rclone, so GitHub is the
+    # working command transport; results still return via Drive.)
+    try:
+        with urllib.request.urlopen(GH_CONTROL, timeout=20) as r:
+            gh = json.loads(r.read().decode("utf-8"))
+        for cmd in (gh if isinstance(gh, list) else [gh]):
+            if isinstance(cmd, dict):
+                run_command(cmd, st, outbox)
+    except Exception as e:
+        print("github control fetch failed:", e)
     rclone("copy", str(outbox), f"{rem}keirin/control_results", "--log-level", "ERROR")
 
 
