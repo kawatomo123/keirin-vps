@@ -8,7 +8,7 @@ mkdir -p "$BASE/data"
 
 TMP="$(mktemp -d)"
 curl -fsSL "$REPO_TARBALL" | tar -xz -C "$TMP" --strip-components=1
-cp "$TMP/collector.py" "$TMP/backfill_driver.py" "$TMP/daily_collect.py" "$TMP/sync_status.sh" "$BASE/"
+cp "$TMP/collector.py" "$TMP/backfill_driver.py" "$TMP/daily_collect.py" "$TMP/sync_status.sh" "$TMP/agent.py" "$BASE/"
 chmod +x "$BASE/sync_status.sh"
 cp -r "$TMP/systemd" "$BASE/systemd"
 
@@ -21,15 +21,16 @@ if [ ! -x "$BASE/venv/bin/python" ]; then
 fi
 "$BASE/venv/bin/pip" install -q --upgrade pip
 "$BASE/venv/bin/pip" install -q requests beautifulsoup4
-"$BASE/venv/bin/python" -m py_compile "$BASE/collector.py" "$BASE/backfill_driver.py" "$BASE/daily_collect.py"
+"$BASE/venv/bin/python" -m py_compile "$BASE/collector.py" "$BASE/backfill_driver.py" "$BASE/daily_collect.py" "$BASE/agent.py"
 echo "python env OK"
 
 sudo cp "$BASE/systemd/keirin-backfill.service" "$BASE/systemd/keirin-backfill.timer" \
         "$BASE/systemd/keirin-daily.service" "$BASE/systemd/keirin-daily.timer" \
         "$BASE/systemd/keirin-sync.service" "$BASE/systemd/keirin-sync.timer" \
+        "$BASE/systemd/keirin-agent.service" "$BASE/systemd/keirin-agent.timer" \
         /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now keirin-backfill.timer keirin-daily.timer keirin-sync.timer
+sudo systemctl enable --now keirin-backfill.timer keirin-daily.timer keirin-sync.timer keirin-agent.timer
 echo "timers enabled:"
 systemctl list-timers 'keirin-*' --no-pager || true
 echo "DONE. Backfill runs inside windows 21:05-02:55 / 04:05-05:40; daily at 01:10."

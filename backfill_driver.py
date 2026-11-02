@@ -16,13 +16,35 @@ ROOT = Path(__file__).resolve().parent
 PY = ROOT / "venv" / "bin" / "python"
 STATUS = ROOT / "data" / "backfill_status.json"
 
-# (start, end) local-time windows, every day
+# (start, end) local-time windows, every day; overridable via data/windows.json
+# written by the control agent: {"windows": [["21:05","02:55"], ["04:05","05:40"]]}
 WINDOWS = [(dtime(21, 5), dtime(23, 59)), (dtime(0, 0), dtime(2, 55)), (dtime(4, 5), dtime(5, 40))]
+
+
+def load_windows():
+    p = ROOT / "data" / "windows.json"
+    if p.exists():
+        try:
+            raw = json.loads(p.read_text())["windows"]
+            out = []
+            for a, b in raw:
+                ah, am = map(int, a.split(":"))
+                bh, bm = map(int, b.split(":"))
+                if (ah, am) <= (bh, bm):
+                    out.append((dtime(ah, am), dtime(bh, bm)))
+                else:  # crosses midnight -> split
+                    out.append((dtime(ah, am), dtime(23, 59)))
+                    out.append((dtime(0, 0), dtime(bh, bm)))
+            if out:
+                return out
+        except Exception:
+            pass
+    return WINDOWS
 
 
 def in_window(now=None):
     t = (now or datetime.now()).time()
-    return any(a <= t <= b for a, b in WINDOWS)
+    return any(a <= t <= b for a, b in load_windows())
 
 
 def month_range():

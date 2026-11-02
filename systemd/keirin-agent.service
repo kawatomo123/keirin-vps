@@ -1,0 +1,10 @@
+[Unit]
+Description=Keirin control agent (Drive-polled, allow-listed actions)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/keirin
+ExecStart=/usr/bin/flock -n /home/ubuntu/keirin/data/agent.lock /home/ubuntu/keirin/venv/bin/python /home/ubuntu/keirin/agent.py
+Nice=10
