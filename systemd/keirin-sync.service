@@ -1,0 +1,8 @@
+[Unit]
+Description=Sync keirin status/CSVs to Drive (rclone)
+
+[Service]
+Type=oneshot
+User=ubuntu
+ExecStart=/bin/sh /home/ubuntu/keirin/sync_status.sh
+Nice=10

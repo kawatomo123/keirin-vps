@@ -1,0 +1,9 @@
+[Unit]
+Description=Run keirin daily collection at 01:10 JST
+
+[Timer]
+OnCalendar=*-*-* 01:10:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

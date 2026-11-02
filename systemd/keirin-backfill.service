@@ -1,0 +1,10 @@
+[Unit]
+Description=Keirin backfill driver (windowed)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/keirin
+ExecStart=/usr/bin/flock -n /home/ubuntu/keirin/data/backfill.lock /home/ubuntu/keirin/venv/bin/python /home/ubuntu/keirin/backfill_driver.py
+Nice=10

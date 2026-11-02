@@ -1,0 +1,9 @@
+[Unit]
+Description=Run keirin backfill driver hourly (it self-limits to windows)
+
+[Timer]
+OnCalendar=*-*-* *:05:00
+Persistent=false
+
+[Install]
+WantedBy=timers.target
