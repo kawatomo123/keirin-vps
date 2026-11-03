@@ -1,1 +1,2 @@
-[{"id": "fix_20261103_1535_stop", "action": "set_windows", "windows": [["12:00", "12:01"]]}]
+[{"id": "fix_20261103_1545_update", "action": "update_code"},
+ {"id": "fix_20261103_1546_dedup", "action": "dedup_data"}]
