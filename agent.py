@@ -103,6 +103,26 @@ def do_set_windows(cmd):
     return f"windows set to {wins} by_weekday={'yes' if 'by_weekday' in payload else 'no'}"
 
 
+def do_dedup_data():
+    """Remove exact duplicate lines from data CSVs (repairs the double
+    collection of 2026-11-02/03, when two drivers ran concurrently).
+    Every CSV's rows carry a unique key (race_id / race_id+car), so an
+    exact duplicate line is always the same row written twice."""
+    removed = {}
+    for path in sorted(DATA.glob("*.csv")):
+        lines = path.read_text(encoding="utf-8").splitlines()
+        seen, out = set(), []
+        for line in lines:
+            if line not in seen:
+                seen.add(line)
+                out.append(line)
+        n = len(lines) - len(out)
+        if n:
+            path.write_text("\n".join(out) + "\n", encoding="utf-8")
+        removed[path.name] = n
+    return {"removed": removed}
+
+
 def do_status():
     snap = {}
     for name in ["backfill_status.json", "agent_state.json"]:
@@ -121,6 +141,7 @@ def do_status():
 ACTIONS = {"update_code": lambda c: do_update_code(),
            "collect_day": do_collect_day,
            "set_windows": do_set_windows,
+           "dedup_data": lambda c: do_dedup_data(),
            "status": lambda c: do_status()}
 
 

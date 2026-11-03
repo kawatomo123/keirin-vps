@@ -107,10 +107,26 @@ def tag_progress(tag):
     return {"done": [], "stats": {}}
 
 
+def acquire_lock():
+    """Single-instance guard inside the driver itself, so ANY start
+    (cron wrapper or a manual console start) is safe. The cron line's
+    flock alone was bypassed by manual starts on 2026-11-02/03, which
+    ran two drivers side by side and duplicated every collected day."""
+    import fcntl
+    handle = open(ROOT / "data" / ".backfill.lock", "w")
+    try:
+        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        print("another backfill_driver is running; exit")
+        sys.exit(0)
+    return handle
+
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == "--status":
         print(json.dumps(load_status(), ensure_ascii=False))
         return
+    _lock = acquire_lock()  # noqa: F841 (must stay referenced)
     if not in_window():
         print("outside window; exit")
         return
