@@ -1,1 +1,2 @@
-[]
+[{"id": "fix2_20261104_0715_probe", "action": "collect_day", "date": "2024-06-15", "tag": "202406"},
+ {"id": "fix2_20261104_0716_update", "action": "update_code"}]
