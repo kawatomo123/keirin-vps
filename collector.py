@@ -14,6 +14,15 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://keirin.kdreams.jp"
+MAINTENANCE_MARK = "システムメンテナンス中"
+
+
+class DayUnavailable(Exception):
+    """The day's racecard could not be obtained (site maintenance, fetch
+    failure, or an index page with no race links). Such a day must never
+    be recorded as collected: K-Dreams serves a maintenance page for all
+    URLs during 01:00-07:00, and treating that page as 'no races today'
+    silently zero-filled 2024-03-28..2025-05 on 2026-11-04."""
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"}
 ROOT = Path(__file__).parent
 RAW = ROOT / "data" / "raw"
@@ -30,7 +39,10 @@ def fetch(url, retries=3):
                 return None
             r.raise_for_status()
             r.encoding = r.apparent_encoding or "utf-8"
-            return r.text
+            text = r.text
+            if MAINTENANCE_MARK in text:
+                raise RuntimeError("site maintenance")
+            return text
         except Exception as e:
             print(f"  ! fetch fail ({attempt + 1}/{retries}) {url}: {e}", flush=True)
             time.sleep(5 * (attempt + 1))
@@ -241,9 +253,10 @@ def collect_day(d, tag, stats):
     idx_html = fetch(f"{BASE}/racecard/{ds}/")
     time.sleep(SLEEP)
     if idx_html is None:
-        print(f"{cal}: no index", flush=True)
-        return
+        raise DayUnavailable(f"{cal}: no index")
     links = sorted(set(re.findall(r'href="(https://keirin\.kdreams\.jp/[a-z]+/racedetail/(\d{16})/)"', idx_html)))
+    if not links:
+        raise DayUnavailable(f"{cal}: no race links on index page")
     print(f"{cal}: {len(links)} races", flush=True)
     races, entries, results, payouts = [], [], [], []
     daycodes = {}
@@ -309,16 +322,26 @@ def main():
     stats = {"races": 0, "entries": 0, "results": 0, "payouts": 0,
              "detail_missing": 0, "entry_empty": 0, "result_missing": 0}
     d = start
+    failed = []
     while d <= end:
         key = d.isoformat()
         if key in done:
             print(f"{key}: skip (done)", flush=True)
         else:
-            collect_day(d, args.tag, stats)
+            try:
+                collect_day(d, args.tag, stats)
+            except DayUnavailable as e:
+                print(f"{key}: UNAVAILABLE {e}", flush=True)
+                failed.append(key)
+                d += timedelta(days=1)
+                continue
             done.add(key)
             prog_path.write_text(json.dumps({"done": sorted(done), "stats": stats}, ensure_ascii=False, indent=1))
         d += timedelta(days=1)
     print("ALL DONE", stats, flush=True)
+    if failed:
+        print("INCOMPLETE", failed, flush=True)
+        sys.exit(2)
 
 
 if __name__ == "__main__":

@@ -123,6 +123,41 @@ def do_dedup_data():
     return {"removed": removed}
 
 
+def do_reset_zero_days():
+    """Undo false completions: days recorded as done in a progress file
+    but with no race rows in that month's races CSV (the 2026-11-04
+    K-Dreams maintenance incident zero-filled them). Un-marks those days
+    and removes affected months from backfill done_months so the driver
+    recollects them. Days that produced rows are never touched."""
+    import csv as _csv
+    reset = {}
+    for prog_path in sorted(DATA.glob("progress_*.json")):
+        tag = prog_path.stem.replace("progress_", "")
+        prog = json.loads(prog_path.read_text())
+        done_days = prog.get("done", [])
+        if not done_days:
+            continue
+        race_dates = set()
+        races_path = DATA / f"races_{tag}.csv"
+        if races_path.exists():
+            with races_path.open(encoding="utf-8") as f:
+                for row in _csv.DictReader(f):
+                    race_dates.add(row["date"])
+        zero = [d for d in done_days if d not in race_dates]
+        if zero:
+            prog["done"] = [d for d in done_days if d in race_dates]
+            prog_path.write_text(json.dumps(prog, ensure_ascii=False, indent=1))
+            reset[tag] = len(zero)
+    if reset:
+        status_path = DATA / "backfill_status.json"
+        if status_path.exists():
+            st = json.loads(status_path.read_text())
+            st["done_months"] = [t for t in st.get("done_months", [])
+                                 if t not in reset]
+            status_path.write_text(json.dumps(st, ensure_ascii=False, indent=1))
+    return {"reset_days": reset, "total": sum(reset.values())}
+
+
 def do_status():
     snap = {}
     for name in ["backfill_status.json", "agent_state.json"]:
@@ -142,6 +177,7 @@ ACTIONS = {"update_code": lambda c: do_update_code(),
            "collect_day": do_collect_day,
            "set_windows": do_set_windows,
            "dedup_data": lambda c: do_dedup_data(),
+           "reset_zero_days": lambda c: do_reset_zero_days(),
            "status": lambda c: do_status()}
 
 

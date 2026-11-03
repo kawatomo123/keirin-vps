@@ -207,11 +207,22 @@ def run_side(side, claims):
                                cwd=ROOT, capture_output=True, text=True)
             tail = (r.stdout.strip().splitlines() or [""])[-1]
             print(" ->", tail, flush=True)
+            if r.returncode == 2:
+                # Day unavailable (e.g. K-Dreams nightly maintenance):
+                # not collected and not marked done; stop this side so
+                # the remaining queue is not burned through pointlessly.
+                print(f"site unavailable at {d}; {side} stops", flush=True)
+                update_status(**{current_key: None})
+                return
             update_status(last_day=d.isoformat(), last_result=tail,
                           **{f"last_day_{side}": d.isoformat()})
         update_status(**{current_key: None})
         if finished:
-            mark_month_done(tag, claims)
+            done_now = set(tag_progress(tag)["done"])
+            if all(x.isoformat() in done_now for x in days):
+                mark_month_done(tag, claims)
+            else:
+                print(f"{tag}: some days incomplete; month not marked done", flush=True)
         else:
             return
 
