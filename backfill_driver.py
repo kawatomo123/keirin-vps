@@ -9,12 +9,15 @@ per-tag progress files skip finished days, and status.json tracks months.
 import json
 import subprocess
 import sys
+import threading
 from datetime import date, datetime, time as dtime, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PY = ROOT / "venv" / "bin" / "python"
 STATUS = ROOT / "data" / "backfill_status.json"
+STATUS_LOCK = threading.RLock()
+SHARED_STATUS = None
 
 # (start, end) local-time windows, every day; overridable via data/windows.json
 # written by the control agent: {"windows": [["21:05","02:55"], ["04:05","05:40"]]}
@@ -95,9 +98,10 @@ def load_status():
 
 
 def save_status(st):
-    st["updated_at"] = datetime.now().isoformat(timespec="seconds")
-    STATUS.parent.mkdir(parents=True, exist_ok=True)
-    STATUS.write_text(json.dumps(st, ensure_ascii=False, indent=1))
+    with STATUS_LOCK:
+        st["updated_at"] = datetime.now().isoformat(timespec="seconds")
+        STATUS.parent.mkdir(parents=True, exist_ok=True)
+        STATUS.write_text(json.dumps(st, ensure_ascii=False, indent=1))
 
 
 def tag_progress(tag):
@@ -122,7 +126,98 @@ def acquire_lock():
     return handle
 
 
+class MonthClaims:
+    """Hands out each queued month to exactly one worker. The descending
+    worker takes the newest remaining month and the ascending worker the
+    oldest remaining month, so they never share a tag (and therefore never
+    share the CSV/progress files for that month)."""
+
+    def __init__(self, queue, done_months):
+        self.queue = list(queue)
+        self.done = set(done_months)
+        self.claimed = set()
+        self.front = 0
+        self.back = len(self.queue) - 1
+        self.lock = threading.Lock()
+
+    def claim(self, side):
+        with self.lock:
+            while self.front <= self.back:
+                if side == "desc":
+                    tag = self.queue[self.front]
+                    self.front += 1
+                else:
+                    tag = self.queue[self.back]
+                    self.back -= 1
+                if tag not in self.done and tag not in self.claimed:
+                    self.claimed.add(tag)
+                    return tag
+            return None
+
+    def finish(self, tag):
+        with self.lock:
+            self.done.add(tag)
+            self.claimed.discard(tag)
+
+    def all_done(self):
+        with self.lock:
+            return all(tag in self.done for tag in self.queue)
+
+
+def update_status(**updates):
+    with STATUS_LOCK:
+        SHARED_STATUS.update(updates)
+        SHARED_STATUS["current"] = (SHARED_STATUS.get("current_desc")
+                                    or SHARED_STATUS.get("current_asc"))
+        save_status(SHARED_STATUS)
+
+
+def mark_month_done(tag, claims):
+    claims.finish(tag)
+    with STATUS_LOCK:
+        if tag not in SHARED_STATUS["done_months"]:
+            SHARED_STATUS["done_months"].append(tag)
+        save_status(SHARED_STATUS)
+
+
+def run_side(side, claims):
+    current_key = f"current_{side}"
+    while True:
+        tag = claims.claim(side)
+        if tag is None:
+            update_status(**{current_key: None})
+            return
+        days = month_days(tag)
+        done_days = set(tag_progress(tag)["done"])
+        remaining = [d for d in days if d.isoformat() not in done_days]
+        if not remaining:
+            mark_month_done(tag, claims)
+            update_status(**{current_key: None})
+            continue
+        update_status(**{current_key: tag})
+        finished = True
+        for d in remaining:
+            if not in_window():
+                print(f"window ended; {side} stops at {tag} {d}", flush=True)
+                finished = False
+                break
+            print(f"collect {d} tag {tag} ({side})", flush=True)
+            r = subprocess.run([str(PY), str(ROOT / "collector.py"),
+                                "--start", d.isoformat(), "--end", d.isoformat(), "--tag", tag],
+                               cwd=ROOT, capture_output=True, text=True)
+            tail = (r.stdout.strip().splitlines() or [""])[-1]
+            print(" ->", tail, flush=True)
+            update_status(last_day=d.isoformat(), last_result=tail,
+                          **{f"last_day_{side}": d.isoformat()})
+        update_status(**{current_key: None})
+        if finished:
+            mark_month_done(tag, claims)
+        else:
+            return
+
+
 def main():
+    global SHARED_STATUS
     if len(sys.argv) > 1 and sys.argv[1] == "--status":
         print(json.dumps(load_status(), ensure_ascii=False))
         return
@@ -130,38 +225,22 @@ def main():
     if not in_window():
         print("outside window; exit")
         return
-    st = load_status()
-    for tag in month_range():
-        if tag in st["done_months"]:
-            continue
-        days = month_days(tag)
-        done_days = set(tag_progress(tag)["done"])
-        remaining = [d for d in days if d.isoformat() not in done_days]
-        if not remaining:
-            st["done_months"].append(tag)
-            st["current"] = None
-            save_status(st)
-            continue
-        st["current"] = tag
-        save_status(st)
-        for d in remaining:
-            if not in_window():
-                print(f"window ended; stop at {tag} {d}")
-                save_status(st)
-                return
-            print(f"collect {d} tag {tag}", flush=True)
-            r = subprocess.run([str(PY), str(ROOT / "collector.py"),
-                                "--start", d.isoformat(), "--end", d.isoformat(), "--tag", tag],
-                               cwd=ROOT, capture_output=True, text=True)
-            tail = (r.stdout.strip().splitlines() or [""])[-1]
-            print(" ->", tail, flush=True)
-            st["last_day"] = d.isoformat()
-            st["last_result"] = tail
-            save_status(st)
-        st["done_months"].append(tag)
-        st["current"] = None
-        save_status(st)
-    print("ALL MONTHS DONE")
+    SHARED_STATUS = load_status()
+    SHARED_STATUS.setdefault("done_months", [])
+    SHARED_STATUS.setdefault("current_desc", None)
+    SHARED_STATUS.setdefault("current_asc", None)
+    save_status(SHARED_STATUS)
+    claims = MonthClaims(month_range(), SHARED_STATUS["done_months"])
+    threads = [threading.Thread(target=run_side, args=("desc", claims)),
+               threading.Thread(target=run_side, args=("asc", claims))]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    if claims.all_done():
+        print("ALL MONTHS DONE")
+    else:
+        print("window ended; work remains")
 
 
 if __name__ == "__main__":

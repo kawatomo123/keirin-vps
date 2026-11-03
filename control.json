@@ -1,1 +1,1 @@
-[{"id": "check_20261103_1705_status", "action": "status"}]
+[{"id": "speed_20261103_1712_stop", "action": "set_windows", "windows": [["12:00", "12:01"]]}]
