@@ -26,7 +26,7 @@ class DayUnavailable(Exception):
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"}
 ROOT = Path(__file__).parent
 RAW = ROOT / "data" / "raw"
-SLEEP = 1.5
+SLEEP = 1.0
 SESSION = requests.Session()
 SESSION.headers.update(UA)
 

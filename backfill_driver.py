@@ -242,7 +242,13 @@ def main():
     SHARED_STATUS.setdefault("current_asc", None)
     save_status(SHARED_STATUS)
     claims = MonthClaims(month_range(), SHARED_STATUS["done_months"])
+    # Four workers (2 from each end) since 2026-11-04: claims are exclusive
+    # per month, so workers never share CSV/progress files. Speeds the
+    # post-maintenance recollection; the collector's zero-guard keeps a
+    # site-side failure from being recorded as progress.
     threads = [threading.Thread(target=run_side, args=("desc", claims)),
+               threading.Thread(target=run_side, args=("desc", claims)),
+               threading.Thread(target=run_side, args=("asc", claims)),
                threading.Thread(target=run_side, args=("asc", claims))]
     for t in threads:
         t.start()
