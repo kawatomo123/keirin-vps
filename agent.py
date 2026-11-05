@@ -158,6 +158,87 @@ def do_reset_zero_days():
     return {"reset_days": reset, "total": sum(reset.values())}
 
 
+GIT_REPO_DIR = ROOT / "data_repo"
+GIT_KEY = Path.home() / ".ssh" / "keirin_data_ed25519"
+GIT_URL = "git@github.com:kawatomo123/keirin-data.git"
+
+
+def _git_env():
+    import os
+    env = dict(os.environ)
+    env["GIT_SSH_COMMAND"] = (f"ssh -i {GIT_KEY} -o IdentitiesOnly=yes "
+                              "-o StrictHostKeyChecking=accept-new")
+    return env
+
+
+def do_git_setup():
+    """One-time setup for the GitHub data channel (replaces the Drive
+    data return): generate a dedicated SSH keypair (public key is
+    reported back so it can be registered as a deploy key) and install
+    a */30 crontab line that runs `agent.py --sync-data`."""
+    out = {}
+    r = subprocess.run(["git", "--version"], capture_output=True, text=True)
+    out["git_version"] = (r.stdout or r.stderr).strip()
+    GIT_KEY.parent.mkdir(parents=True, exist_ok=True)
+    if not GIT_KEY.exists():
+        r = subprocess.run(["ssh-keygen", "-t", "ed25519", "-N", "",
+                            "-f", str(GIT_KEY)], capture_output=True, text=True)
+        if r.returncode != 0:
+            return {"error": f"ssh-keygen failed: {r.stderr[-200:]}", **out}
+    out["pubkey"] = GIT_KEY.with_suffix(".pub").read_text().strip()
+    line = (f"*/30 * * * * {ROOT}/venv/bin/python {ROOT}/agent.py "
+            f"--sync-data >> {DATA}/git_sync.log 2>&1")
+    cur = subprocess.run(["crontab", "-l"], capture_output=True, text=True).stdout
+    if "--sync-data" in cur:
+        out["cron"] = "already installed"
+    else:
+        new = (cur.rstrip("\n") + "\n" if cur.strip() else "") + line + "\n"
+        r = subprocess.run(["crontab", "-"], input=new,
+                           capture_output=True, text=True)
+        out["cron"] = "installed" if r.returncode == 0 else f"failed: {r.stderr[-200:]}"
+    return out
+
+
+def do_git_sync():
+    """Copy the collection CSVs/progress into the keirin-data repo
+    checkout and push if anything changed."""
+    env = _git_env()
+    if not (GIT_REPO_DIR / ".git").exists():
+        r = subprocess.run(["git", "clone", GIT_URL, str(GIT_REPO_DIR)],
+                           capture_output=True, text=True, env=env)
+        if r.returncode != 0:
+            return f"clone failed: {r.stderr[-300:]}"
+    else:
+        r = subprocess.run(["git", "-C", str(GIT_REPO_DIR), "pull", "-q"],
+                           capture_output=True, text=True, env=env)
+        if r.returncode != 0:
+            return f"pull failed: {r.stderr[-300:]}"
+    dest = GIT_REPO_DIR / "data"
+    dest.mkdir(exist_ok=True)
+    import glob as _glob
+    names = [Path(p).name for p in _glob.glob(str(DATA / "*.csv"))]
+    names += [Path(p).name for p in _glob.glob(str(DATA / "progress_*.json"))]
+    if (DATA / "backfill_status.json").exists():
+        names.append("backfill_status.json")
+    for name in names:
+        shutil.copy2(DATA / name, dest / name)
+    subprocess.run(["git", "-C", str(GIT_REPO_DIR), "add", "-A"],
+                   capture_output=True, text=True, env=env)
+    r = subprocess.run(["git", "-C", str(GIT_REPO_DIR), "status", "--porcelain"],
+                       capture_output=True, text=True, env=env)
+    if not r.stdout.strip():
+        return "no changes"
+    subprocess.run(["git", "-C", str(GIT_REPO_DIR), "-c", "user.email=vps@keirin",
+                    "-c", "user.name=keirin-vps", "commit", "-qm",
+                    f"data sync {datetime.now().isoformat(timespec='minutes')}"],
+                   capture_output=True, text=True, env=env)
+    r = subprocess.run(["git", "-C", str(GIT_REPO_DIR), "push", "-q"],
+                       capture_output=True, text=True, env=env)
+    if r.returncode != 0:
+        return f"push failed: {r.stderr[-300:]}"
+    return f"pushed ({len(names)} files tracked)"
+
+
 def do_status():
     snap = {}
     for name in ["backfill_status.json", "agent_state.json"]:
@@ -178,6 +259,8 @@ ACTIONS = {"update_code": lambda c: do_update_code(),
            "set_windows": do_set_windows,
            "dedup_data": lambda c: do_dedup_data(),
            "reset_zero_days": lambda c: do_reset_zero_days(),
+           "git_setup": lambda c: do_git_setup(),
+           "git_sync_data": lambda c: do_git_sync(),
            "status": lambda c: do_status()}
 
 
@@ -202,6 +285,12 @@ def run_command(cmd, st, outbox):
 
 
 def main():
+    if "--sync-data" in sys.argv:
+        try:
+            print(do_git_sync())
+        except Exception as e:
+            print(f"sync-data error: {e!r}")
+        return
     rem = remote()
     if not rem:
         print("no rclone remote; exit")
