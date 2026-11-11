@@ -315,12 +315,15 @@ def publish(payload_text):
     rel = "keirin/odds_live.json"
     if not ensure_pub_repo():
         return False
+    # 発行専用 clone は odds_live.json のためだけにある。ローカル状態は毎回
+    # origin/main に合わせて捨てる（reset --hard）ことで、途中失敗で出来た
+    # 未コミット変更や未pushコミットが rebase を詰まらせる事故を根絶する。
+    # ペイロードは毎回メモリから作り直すので、捨てても何も失われない。
     try:
         git_run(PUB_REPO, "fetch", "origin", "main")
-        rb = git_run(PUB_REPO, "rebase", "--empty=drop", "origin/main")
-        if rb.returncode != 0:
-            git_run(PUB_REPO, "rebase", "--abort")
-            log("publish skipped: rebase failed on pub repo")
+        rs = git_run(PUB_REPO, "reset", "--hard", "origin/main")
+        if rs.returncode != 0:
+            log(f"publish skipped: reset failed: {rs.stderr[-150:]}")
             return False
     except Exception as e:
         log(f"publish sync failed: {e}")
@@ -345,10 +348,13 @@ def publish(payload_text):
         if ps.returncode == 0:
             return True
         log(f"push failed (attempt {attempt + 1}): {ps.stderr[-150:]}")
+        # origin が進んでいたら、自分のコミットを作り直して再試行する
         git_run(PUB_REPO, "fetch", "origin", "main")
-        rb = git_run(PUB_REPO, "rebase", "--empty=drop", "origin/main")
-        if rb.returncode != 0:
-            git_run(PUB_REPO, "rebase", "--abort")
+        if git_run(PUB_REPO, "reset", "--hard", "origin/main").returncode != 0:
+            break
+        target.write_text(payload_text, encoding="utf-8")
+        git_run(PUB_REPO, "add", "--", rel)
+        if git_run(PUB_REPO, "commit", "-m", "keirin odds_live update", "--", rel).returncode != 0:
             break
     return False
 
