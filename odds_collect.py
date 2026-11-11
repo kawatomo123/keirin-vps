@@ -55,7 +55,12 @@ JST = timezone(timedelta(hours=9))
 BASE = "https://keirin.kdreams.jp"
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
 KEIRIN_DIR = Path(os.environ.get("ODDS_KEIRIN_DIR", str(Path.home() / "keirin")))
+# 予測の読み取り元（既存の共有 clone。読み取り専用で使う）
 REPO = Path(os.environ.get("ODDS_REPO", str(Path.home() / "workspace" / "keiba-data")))
+# 発行専用の独立 clone。共有 clone の作業ツリーは刻み発行者が使うため、
+# そちらで commit すると rebase の取り合いになる。ここは自分専用に保つ。
+PUB_REPO = Path(os.environ.get("ODDS_PUB_REPO", str(KEIRIN_DIR / "keiba-data-pub")))
+PUB_REMOTE = "git@github.com:kawatomo123/keiba-data.git"
 DATA_DIR = KEIRIN_DIR / "data"
 WINDOW_MIN = int(os.environ.get("ODDS_WINDOW_MIN", "120"))
 SLEEP_SEC = 1.5
@@ -163,8 +168,8 @@ def fetch(url, circuit):
 def load_predictions():
     # 作業ツリーには触らず、fetch した origin/main の中身を読む（他発行者の未コミット変更と競合しない）
     try:
-        git_run("fetch", "origin", "main", timeout=60)
-        out = git_run("show", "origin/main:keirin/predictions.json", timeout=60)
+        git_run(REPO, "fetch", "origin", "main", timeout=60)
+        out = git_run(REPO, "show", "origin/main:keirin/predictions.json", timeout=60)
         if out.returncode == 0 and out.stdout:
             return json.loads(out.stdout)
     except Exception as e:
@@ -271,27 +276,43 @@ def parse_sections(body):
 
 # ---------------- git 発行 ----------------
 
-def git_run(*args, timeout=120):
+def git_run(repo, *args, timeout=120):
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0")
-    return subprocess.run(["git", "-C", str(REPO), *args],
+    return subprocess.run(["git", "-C", str(repo), *args],
                           capture_output=True, text=True, env=env, timeout=timeout)
 
 
+def ensure_pub_repo():
+    """発行専用 clone が無ければ作る（浅い clone で十分）。"""
+    if (PUB_REPO / ".git").exists():
+        return True
+    PUB_REPO.parent.mkdir(parents=True, exist_ok=True)
+    env = dict(os.environ, GIT_TERMINAL_PROMPT="0")
+    r = subprocess.run(["git", "clone", "--depth", "50", PUB_REMOTE, str(PUB_REPO)],
+                       capture_output=True, text=True, env=env, timeout=600)
+    if r.returncode != 0:
+        log(f"pub repo clone failed: {r.stderr[-200:]}")
+        return False
+    log(f"pub repo cloned: {PUB_REPO}")
+    return True
+
+
 def publish(payload_text):
-    """keirin/odds_live.json を書いて、変わっていれば commit/push する。"""
+    """発行専用 clone に keirin/odds_live.json を書き、変わっていれば commit/push する。"""
     rel = "keirin/odds_live.json"
-    # 共有ツリー（刻み発行者と共用）なので、rebase はできれば行い、失敗しても
-    # 自分のファイルだけの commit/push は試す（push が弾かれたら次回に回す）
+    if not ensure_pub_repo():
+        return False
     try:
-        git_run("fetch", "origin", "main")
-        rb = git_run("rebase", "--empty=drop", "origin/main")
+        git_run(PUB_REPO, "fetch", "origin", "main")
+        rb = git_run(PUB_REPO, "rebase", "--empty=drop", "origin/main")
         if rb.returncode != 0:
-            git_run("rebase", "--abort")
-            log("rebase skipped (busy tree); committing on current HEAD")
+            git_run(PUB_REPO, "rebase", "--abort")
+            log("publish skipped: rebase failed on pub repo")
+            return False
     except Exception as e:
         log(f"publish sync failed: {e}")
         return False
-    target = REPO / rel
+    target = PUB_REPO / rel
     # generated_at だけの変化では commit しない（races の中身が変わった時だけ発行する）
     try:
         old_races = json.loads(target.read_text(encoding="utf-8")).get("races") if target.exists() else None
@@ -299,21 +320,22 @@ def publish(payload_text):
         old_races = None
     if old_races is not None and old_races == json.loads(payload_text).get("races"):
         return True  # 実質の変化なし
+    target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(payload_text, encoding="utf-8")
-    git_run("add", "--", rel)
-    cm = git_run("commit", "-m", "keirin odds_live update", "--", rel)
+    git_run(PUB_REPO, "add", "--", rel)
+    cm = git_run(PUB_REPO, "commit", "-m", "keirin odds_live update", "--", rel)
     if cm.returncode != 0:
         log(f"commit failed: {cm.stderr[-200:]}")
         return False
     for attempt in range(3):
-        ps = git_run("push", "origin", "main")
+        ps = git_run(PUB_REPO, "push", "origin", "main")
         if ps.returncode == 0:
             return True
         log(f"push failed (attempt {attempt + 1}): {ps.stderr[-150:]}")
-        git_run("fetch", "origin", "main")
-        rb = git_run("rebase", "--empty=drop", "origin/main")
+        git_run(PUB_REPO, "fetch", "origin", "main")
+        rb = git_run(PUB_REPO, "rebase", "--empty=drop", "origin/main")
         if rb.returncode != 0:
-            git_run("rebase", "--abort")
+            git_run(PUB_REPO, "rebase", "--abort")
             break
     return False
 
