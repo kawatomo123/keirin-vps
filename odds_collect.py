@@ -73,7 +73,8 @@ BET_TYPES = [
     ("waku_fuku", False, "2枠複", False),
 ]
 
-PAIR_RE = re.compile(r'<span class="num">([0-9\-=]+)</span><span class="odds">([0-9.]+)</span>')
+# ワイドだけオッズが「1.3～20.1」のような幅表示になる
+PAIR_RE = re.compile(r'<span class="num">([0-9\-=]+)</span><span class="odds">([0-9.]+)(?:～([0-9.]+))?</span>')
 HREF_RE = re.compile(r'href="https://keirin\.kdreams\.jp/([a-z0-9]+)/racedetail/(\d{16})/"')
 
 
@@ -255,14 +256,15 @@ def parse_sections(body):
             sections[label] = {}
             continue
         d = {}
-        for num, val in PAIR_RE.findall(m.group(1)):
+        for num, val, val2 in PAIR_RE.findall(m.group(1)):
             try:
                 v = float(val)
+                v2 = float(val2) if val2 else v
             except ValueError:
                 continue
             if v >= 9000:  # 9999.9 は発売なし等の番人値
                 continue
-            d.setdefault(canon(num, ordered), v)
+            d.setdefault(canon(num, ordered), (v, v2))
         sections[label] = d
     return sections
 
@@ -428,9 +430,14 @@ def main():
             for field, ordered, label, covered in BET_TYPES:
                 combo = t["combos"].get(field)
                 odds = None
+                odds_max = None
                 if combo and covered and res.ok:
-                    odds = sections.get(label, {}).get(canon(combo, ordered))
-                bets[label] = {"combo": combo, "odds": odds}
+                    got = sections.get(label, {}).get(canon(combo, ordered))
+                    if got is not None:
+                        odds, odds_max = got
+                        if odds_max == odds:
+                            odds_max = None
+                bets[label] = {"combo": combo, "odds": odds, "odds_max": odds_max}
                 if odds is not None:
                     ok_any = True
             time.sleep(SLEEP_SEC)
