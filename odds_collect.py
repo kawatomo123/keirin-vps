@@ -291,6 +291,10 @@ def pub_ssh_command():
 def ensure_pub_repo():
     """発行専用 clone が無ければ作る（浅い clone で十分）。"""
     if (PUB_REPO / ".git").exists():
+        # 既存 clone にも鍵と ident を冪等に効かせる
+        git_run(PUB_REPO, "config", "core.sshCommand", pub_ssh_command())
+        git_run(PUB_REPO, "config", "user.name", "sakura-vps")
+        git_run(PUB_REPO, "config", "user.email", "vps@keiba")
         return True
     PUB_REPO.parent.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0", GIT_SSH_COMMAND=pub_ssh_command())
@@ -300,6 +304,8 @@ def ensure_pub_repo():
         log(f"pub repo clone failed: {r.stderr[-200:]}")
         return False
     git_run(PUB_REPO, "config", "core.sshCommand", pub_ssh_command())
+    git_run(PUB_REPO, "config", "user.name", "sakura-vps")
+    git_run(PUB_REPO, "config", "user.email", "vps@keiba")
     log(f"pub repo cloned: {PUB_REPO}")
     return True
 
