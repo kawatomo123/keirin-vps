@@ -282,17 +282,24 @@ def git_run(repo, *args, timeout=120):
                           capture_output=True, text=True, env=env, timeout=timeout)
 
 
+def pub_ssh_command():
+    # keiba-data への VPS からのアクセスは専用デプロイ鍵（共有 clone の core.sshCommand と同じ）
+    key = Path.home() / ".ssh" / "keiba_data_ed25519"
+    return f"ssh -i {key} -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
+
 def ensure_pub_repo():
     """発行専用 clone が無ければ作る（浅い clone で十分）。"""
     if (PUB_REPO / ".git").exists():
         return True
     PUB_REPO.parent.mkdir(parents=True, exist_ok=True)
-    env = dict(os.environ, GIT_TERMINAL_PROMPT="0")
+    env = dict(os.environ, GIT_TERMINAL_PROMPT="0", GIT_SSH_COMMAND=pub_ssh_command())
     r = subprocess.run(["git", "clone", "--depth", "50", PUB_REMOTE, str(PUB_REPO)],
                        capture_output=True, text=True, env=env, timeout=600)
     if r.returncode != 0:
         log(f"pub repo clone failed: {r.stderr[-200:]}")
         return False
+    git_run(PUB_REPO, "config", "core.sshCommand", pub_ssh_command())
     log(f"pub repo cloned: {PUB_REPO}")
     return True
 
