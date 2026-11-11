@@ -14,9 +14,9 @@
 
 リクエスト予算（サーキットブレーカー規律のため明記）:
   - 対象は発走120分前〜発走直前のレースだけ（通常時で同時に3〜6レース、
-    多い日でも12レース程度）。1レース最大7ページ（券種ごと）。
+    多い日でも12レース程度）。オッズは1レース1ページ（全券種入り）。
   - 30分以上先のレースは10分間隔、30分以内は5分間隔（cron は5分毎）。
-  - 上限の目安: 1 tick 最大 約90リクエスト、開催時間帯のみ。
+  - 上限の目安: 1 tick 最大 約15リクエスト（対象レース＋日次インデックス）、開催時間帯のみ。
   - 単一スレッド、リクエスト間隔1.5秒（既存 collector.py と同じ作法）。
   - ブロック形状（403/429/極小ボディ）が3連続 → 回路を開く（1時間、
     再開はインデックス1件のプローブのみ、失敗で倍増・最大4時間）。
@@ -60,15 +60,17 @@ DATA_DIR = KEIRIN_DIR / "data"
 WINDOW_MIN = int(os.environ.get("ODDS_WINDOW_MIN", "120"))
 SLEEP_SEC = 1.5
 
-# predictions のフィールド → (kakeshikiType, 順序ありか, アプリ表示ラベル)
+# predictions のフィールド → (順序ありか, アプリ表示ラベル, kdreams にオッズ節があるか)
+# kdreams のオッズページは1ページに全券種の節（<!-- 券種 Start -->〜End）を含む。
+# 2枠単・2枠複の節は kdreams に無い（掲載なし）ため、常に odds=null になる。
 BET_TYPES = [
-    ("sanren_tan", "3rentan", True, "3連単"),
-    ("sanren_fuku", "3renhuku", False, "3連複"),
-    ("nisya_tan", "2shatan", True, "2車単"),
-    ("nisya_fuku", "2shahuku", False, "2車複"),
-    ("wide", "wide", False, "ワイド"),
-    ("waku_tan", "2wakutan", True, "2枠単"),
-    ("waku_fuku", "2wakuhuku", False, "2枠複"),
+    ("sanren_tan", True, "3連単", True),
+    ("sanren_fuku", False, "3連複", True),
+    ("nisya_tan", True, "2車単", True),
+    ("nisya_fuku", False, "2車複", True),
+    ("wide", False, "ワイド", True),
+    ("waku_tan", True, "2枠単", False),
+    ("waku_fuku", False, "2枠複", False),
 ]
 
 PAIR_RE = re.compile(r'<span class="num">([0-9\-=]+)</span><span class="odds">([0-9.]+)</span>')
@@ -237,27 +239,32 @@ def canon(combo, ordered):
     return tuple(parts)
 
 
-def parse_odds_page(body, combos_by_type):
-    """combos_by_type: {kakeshiki: (model_combo, ordered)} → {kakeshiki: odds or None}"""
-    pairs = {}
-    for num, val in PAIR_RE.findall(body):
-        try:
-            v = float(val)
-        except ValueError:
+def parse_sections(body):
+    """オッズページを券種の節ごとに分け、{ラベル: {canon(combo): odds}} を返す。
+
+    ページ全体を混ぜて読むと 3連単の値が 3連複に紛れる（順序なし正規化が一致するため）
+    ので、必ず節の中でだけ照合する。
+    """
+    sections = {}
+    for _, ordered, label, covered in BET_TYPES:
+        if not covered:
             continue
-        if v >= 9000:  # 9999.9 は発売なし・売れていない枠の番人値
+        m = re.search(rf"<!-- {re.escape(label)} Start -->(.*?)<!-- {re.escape(label)} End -->",
+                      body, re.S)
+        if not m:
+            sections[label] = {}
             continue
-        pairs.setdefault(num, v)
-    out = {}
-    for kakeshiki, (combo, ordered) in combos_by_type.items():
-        target = canon(combo, ordered)
-        found = None
-        for num, v in pairs.items():
-            if canon(num, ordered) == target:
-                found = v
-                break
-        out[kakeshiki] = found
-    return out
+        d = {}
+        for num, val in PAIR_RE.findall(m.group(1)):
+            try:
+                v = float(val)
+            except ValueError:
+                continue
+            if v >= 9000:  # 9999.9 は発売なし等の番人値
+                continue
+            d.setdefault(canon(num, ordered), v)
+        sections[label] = d
+    return sections
 
 
 # ---------------- git 発行 ----------------
@@ -409,25 +416,24 @@ def main():
                 continue
             bets = {}
             ok_any = False
-            for field, kakeshiki, ordered, label in BET_TYPES:
+            # オッズは1レース1ページ（全券種の節を含む）を1回だけ取る
+            url = (f"{BASE}/{slug}/racedetail/{t['race_id']}/"
+                   f"?pageType=odds&kakeshikiType=3rentan")
+            res = fetch(url, circuit)
+            if circuit.get("open_until", 0) > time.time():
+                log("circuit opened mid-run; aborting")
+                save_state(state)
+                return 0
+            sections = parse_sections(res.body) if res.ok else {}
+            for field, ordered, label, covered in BET_TYPES:
                 combo = t["combos"].get(field)
-                if not combo:
-                    bets[label] = {"combo": combo, "odds": None}
-                    continue
-                url = (f"{BASE}/{slug}/racedetail/{t['race_id']}/"
-                       f"?pageType=odds&kakeshikiType={kakeshiki}")
-                res = fetch(url, circuit)
-                if circuit.get("open_until", 0) > time.time():
-                    log("circuit opened mid-run; aborting")
-                    save_state(state)
-                    return 0
-                if res.ok:
-                    odds = parse_odds_page(res.body, {kakeshiki: (combo, ordered)})[kakeshiki]
-                    bets[label] = {"combo": combo, "odds": odds}
+                odds = None
+                if combo and covered and res.ok:
+                    odds = sections.get(label, {}).get(canon(combo, ordered))
+                bets[label] = {"combo": combo, "odds": odds}
+                if odds is not None:
                     ok_any = True
-                else:
-                    bets[label] = {"combo": combo, "odds": None}
-                time.sleep(SLEEP_SEC)
+            time.sleep(SLEEP_SEC)
             if ok_any:
                 live[key] = {"start": t["start_time"],
                              "fetched_at": now.isoformat(timespec="seconds"),
