@@ -377,6 +377,50 @@ def save_state(s):
     state_path().write_text(json.dumps(s, ensure_ascii=False), encoding="utf-8")
 
 
+def status_path():
+    return DATA_DIR / "odds_status.json"
+
+
+def write_status(state_label, circuit, targets=None, live_races=None):
+    """観測用ハートビート（2026-11-12 Fable P0）。毎回 odds_status.json を書く。
+
+    発行（odds_live.json）は内容が変わった時だけだが、こちらは実行のたびに
+    更新するので「変化なし」と「コレクタ死亡」を区別できる。サーキットの
+    開閉遷移もここに残す（従来はログのみで無通知だった）。
+    """
+    try:
+        prev = {}
+        if status_path().exists():
+            prev = json.loads(status_path().read_text(encoding="utf-8"))
+        open_now = circuit.get("open_until", 0) > time.time()
+        transition = prev.get("transition")
+        prev_open = (prev.get("circuit") or {}).get("open")
+        if prev_open is not None and bool(prev_open) != open_now:
+            transition = {"at": now_jst().isoformat(timespec="seconds"),
+                          "kind": "opened" if open_now else "closed"}
+        doc = {
+            "updated_at": now_jst().isoformat(timespec="seconds"),
+            "state": state_label,
+            "targets": targets,
+            "live_races": live_races,
+            "circuit": {
+                "open": open_now,
+                "open_until": (datetime.fromtimestamp(circuit["open_until"], JST)
+                               .isoformat(timespec="seconds")
+                               if circuit.get("open_until") else None),
+                "consec_fails": circuit.get("consec_fails", 0),
+                "fails_today": circuit.get("fails_today", 0),
+                "cooldown_h": circuit.get("cooldown_h", 1),
+            },
+            "transition": transition,
+        }
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        status_path().write_text(json.dumps(doc, ensure_ascii=False),
+                                 encoding="utf-8")
+    except Exception:
+        pass
+
+
 def archive_prepost(entry):
     date = entry["key_date"]
     p = DATA_DIR / f"odds_prepost_{date.replace('-', '')}.json"
@@ -399,6 +443,7 @@ def main():
     probing = False
     if circuit.get("open_until", 0) > ts:
         log("circuit open; skipping")
+        write_status("circuit_open", circuit)
         return 0
     if circuit.get("open_until", 0) > 0:
         probing = True
@@ -407,6 +452,7 @@ def main():
 
     preds = load_predictions()
     if preds is None:
+        write_status("no_predictions", circuit)
         return 0
     targets = pick_targets(preds, now)
     state = load_state()
@@ -430,6 +476,7 @@ def main():
     if not targets and not changed_live:
         save_state(state)
         log("no target races in window")
+        write_status("idle", circuit, targets=0, live_races=len(live))
         return 0
 
     if targets:
@@ -444,6 +491,8 @@ def main():
             circuit["open_until"] = time.time() + circuit.get("cooldown_h", 2) * 3600
             save_circuit(circuit)
             log("probe failed; circuit reopened")
+            write_status("circuit_open", circuit, targets=len(targets),
+                         live_races=len(live))
             return 0
 
         for t in targets:
@@ -466,6 +515,8 @@ def main():
             if circuit.get("open_until", 0) > time.time():
                 log("circuit opened mid-run; aborting")
                 save_state(state)
+                write_status("circuit_open", circuit, targets=len(targets),
+                             live_races=len(live))
                 return 0
             sections = parse_sections(res.body) if res.ok else {}
             for field, ordered, label, covered in BET_TYPES:
@@ -506,6 +557,7 @@ def main():
             log(f"published odds_live.json ({len(live)} races)")
         else:
             log("publish deferred (will retry next run)")
+    write_status("ok", circuit, targets=len(targets), live_races=len(live))
     return 0
 
 
