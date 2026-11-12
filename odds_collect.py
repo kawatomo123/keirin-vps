@@ -540,6 +540,18 @@ def main():
                 elif odds is not None:
                     bet["open"] = {"odds": odds, "odds_max": odds_max,
                                    "t": now.strftime("%H:%M")}
+                # 推移履歴（v61・グラフ表示用、表示専用）。値が変わったときだけ点を
+                # 足し、直近12点まで保持する。値が取れない券種は hist を持たない。
+                prev_hist = (live.get(key) or {}).get("bets", {}).get(label, {}).get("hist") or []
+                if odds is not None:
+                    hist = list(prev_hist)
+                    if (not hist or hist[-1].get("odds") != odds
+                            or hist[-1].get("odds_max") != odds_max):
+                        hist.append({"t": now.strftime("%H:%M"),
+                                     "odds": odds, "odds_max": odds_max})
+                    bet["hist"] = hist[-12:]
+                elif prev_hist:
+                    bet["hist"] = prev_hist
                 bets[label] = bet
                 if odds is not None:
                     ok_any = True
