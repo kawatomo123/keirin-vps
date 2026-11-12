@@ -529,7 +529,18 @@ def main():
                         odds, odds_max = got
                         if odds_max == odds:
                             odds_max = None
-                bets[label] = {"combo": combo, "odds": odds, "odds_max": odds_max}
+                bet = {"combo": combo, "odds": odds, "odds_max": odds_max}
+                # 当日初回値（v60・オッズ上下表示の基準、表示専用）。最初に取れた値を
+                # そのレースが live にいる間ずっと保持する。値が後から初めて取れた
+                # 券種は、その時点の値を初回とする。open が null の券種（2枠単・2枠複
+                # 等）は open 自体を持たない。
+                prev_open = (live.get(key) or {}).get("bets", {}).get(label, {}).get("open")
+                if prev_open:
+                    bet["open"] = prev_open
+                elif odds is not None:
+                    bet["open"] = {"odds": odds, "odds_max": odds_max,
+                                   "t": now.strftime("%H:%M")}
+                bets[label] = bet
                 if odds is not None:
                     ok_any = True
             time.sleep(SLEEP_SEC)
