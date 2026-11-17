@@ -66,12 +66,13 @@ def in_window(now=None):
 
 
 def month_range():
-    """Backfill queue: most recent 3 years, newest month first
-    (2026-10 down to 2023-11), excluding 2025-01 (collected on the VM).
-    Decided by the user 2026-11-02."""
+    """Backfill queue: newest month first (2026-10 down to 2022-01),
+    excluding 2025-01 (collected on the VM).
+    Original range (to 2023-11) decided by the user 2026-11-02;
+    extended to 2022-01 on 2026-11-18 as v3 track 1 (more training data)."""
     out = []
     y, m = 2026, 10
-    while (y, m) >= (2023, 11):
+    while (y, m) >= (2022, 1):
         if not (y == 2025 and m == 1):
             out.append(f"{y:04d}{m:02d}")
         m -= 1
