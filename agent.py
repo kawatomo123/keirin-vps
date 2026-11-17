@@ -254,7 +254,76 @@ def do_status():
     return snap
 
 
+_EXTRACT_SCRIPT = r'''
+import csv, gzip, json, re, sys
+from pathlib import Path
+ROOT = Path("__ROOT__")
+DATA = ROOT / "data"
+dates = {}
+for p in sorted(DATA.glob("races_*.csv")):
+    with p.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            dates[row["race_id"]] = row["date"]
+rawdir = DATA / "raw" / "racedetail"
+block_re = re.compile(r'class="line_position">(.*?)</div>', re.S)
+span_re = re.compile(r'<span class="p\d+">([^<]*)</span>')
+rows = {}
+files = sorted(rawdir.glob("*.html.gz"))
+n_ok = n_missing = 0
+for i, p in enumerate(files):
+    rid = p.name[:-8]
+    try:
+        html = gzip.open(p, "rt", encoding="utf-8", errors="ignore").read()
+    except Exception:
+        n_missing += 1
+        continue
+    m = block_re.search(html)
+    if not m:
+        n_missing += 1
+        continue
+    groups, roles = [], []
+    for seg in m.group(1).split('class="icon_p space"'):
+        vals = [v.strip() for v in span_re.findall(seg)]
+        cars = [v for v in vals if v.isdigit()]
+        rls = [v for v in vals if v and not v.isdigit() and v != "\u2190"]
+        if cars:
+            groups.append(",".join(cars))
+            roles.append(",".join(rls))
+    if not groups:
+        n_missing += 1
+        continue
+    d = dates.get(rid, "")
+    rows.setdefault(d[:7].replace("-", ""), []).append(
+        [rid, d, "|".join(groups), "|".join(roles)])
+    n_ok += 1
+    if (i + 1) % 10000 == 0:
+        print(f"progress {i + 1}/{len(files)}", flush=True)
+for ym, rs in sorted(rows.items()):
+    out = DATA / f"lines_{ym}.csv"
+    with out.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["race_id", "date", "formation", "roles"])
+        w.writerows(sorted(rs))
+print(f"DONE files={len(files)} parsed={n_ok} missing={n_missing}", flush=True)
+'''
+
+
+def do_extract_lines():
+    """Parse the published line formations (narabi yosou) out of the cached
+    racedetail HTML into data/lines_YYYYMM.csv (shipped by git sync). Runs
+    detached; completion shows up as lines_*.csv in the data repo."""
+    script = DATA / "extract_lines_run.py"
+    DATA.mkdir(parents=True, exist_ok=True)
+    script.write_text(_EXTRACT_SCRIPT.replace("__ROOT__", str(ROOT)))
+    py = ROOT / "venv" / "bin" / "python"
+    log = open(DATA / "lines_extract.log", "a", encoding="utf-8")
+    p = subprocess.Popen([str(py), str(script)], stdout=log,
+                         stderr=subprocess.STDOUT, start_new_session=True)
+    return f"extract_lines started pid={p.pid}"
+
+
 ACTIONS = {"update_code": lambda c: do_update_code(),
+           "extract_lines": lambda c: do_extract_lines(),
            "collect_day": do_collect_day,
            "set_windows": do_set_windows,
            "dedup_data": lambda c: do_dedup_data(),
