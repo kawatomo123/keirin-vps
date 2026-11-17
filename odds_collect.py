@@ -79,6 +79,11 @@ BET_TYPES = [
 ]
 
 # ワイドだけオッズが「1.3～20.1」のような幅表示になる
+# 市場の人気順（表示専用・v120）。詳細画面で市場の上位とモデルの買い目を
+# 並べるために、対象券種は節内の全組み合わせから人気上位も発行する。
+MARKET_TOP_TYPES = {"3連単", "3連複", "2車単", "2車複"}
+MARKET_TOP_N = 10
+
 PAIR_RE = re.compile(r'<span class="num">([0-9\-=]+)</span><span class="odds">([0-9.]+)(?:～([0-9.]+))?</span>')
 HREF_RE = re.compile(r'href="https://keirin\.kdreams\.jp/([a-z0-9]+)/racedetail/(\d{16})/"')
 
@@ -530,6 +535,19 @@ def main():
                         if odds_max == odds:
                             odds_max = None
                 bet = {"combo": combo, "odds": odds, "odds_max": odds_max}
+                # 市場の人気上位（表示専用・v120）。節は全組み合わせを含むので、
+                # オッズ昇順＝人気順に並べて上位だけ持つ。推移は持たない。
+                if label in MARKET_TOP_TYPES and res.ok:
+                    sec = sections.get(label, {})
+                    if sec:
+                        joiner = "-" if ordered else "="
+                        ranked = sorted(sec.items(), key=lambda kv: kv[1][0])
+                        bet["top"] = [
+                            {"combo": joiner.join(ck),
+                             "odds": v,
+                             "odds_max": v2 if v2 != v else None}
+                            for ck, (v, v2) in ranked[:MARKET_TOP_N]
+                        ]
                 # 当日初回値（v60・オッズ上下表示の基準、表示専用）。最初に取れた値を
                 # そのレースが live にいる間ずっと保持する。値が後から初めて取れた
                 # 券種は、その時点の値を初回とする。open が null の券種（2枠単・2枠複
