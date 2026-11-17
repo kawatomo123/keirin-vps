@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 STATE = DATA / "agent_state.json"
 TARBALL = "https://codeload.github.com/kawatomo123/keirin-vps/tar.gz/refs/heads/main"
-CODE_FILES = ["collector.py", "backfill_driver.py", "daily_collect.py", "sync_status.sh", "agent.py"]
+CODE_FILES = ["collector.py", "backfill_driver.py", "daily_collect.py", "sync_status.sh", "agent.py", "odds_collect.py"]
 GH_CONTROL = "https://raw.githubusercontent.com/kawatomo123/keirin-vps/main/control.json"
 
 
