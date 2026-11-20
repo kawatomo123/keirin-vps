@@ -471,9 +471,33 @@ def do_ev_cron_setup():
     return "ev cron installed" if r.returncode == 0 else f"failed: {r.stderr[-200:]}"
 
 
+def do_daily_retry_cron_setup():
+    """Install a 13:10 crontab line re-running daily_collect.py
+    (Opus review P2, 2026-11-21). The morning run's retry loop stops
+    at 08:00 on the assumption that K-Dreams maintenance ends at
+    07:00; an emergency maintenance running past 08:00 would otherwise
+    leave a missed day to the next 01:10 run, which is inside the
+    maintenance window again. daily_collect only picks up days not
+    marked done (past 7 days), so the afternoon run is a no-op when
+    nothing is missing. flock -n on the same daily.lock as the 01:10
+    line keeps the two runs from overlapping."""
+    line = (f"10 13 * * * /usr/bin/flock -n {DATA}/daily.lock "
+            f"{ROOT}/venv/bin/python {ROOT}/daily_collect.py "
+            f">> {DATA}/daily.log 2>&1")
+    cur = subprocess.run(["crontab", "-l"], capture_output=True, text=True).stdout
+    if "10 13" in cur and "daily_collect" in cur:
+        return "daily retry cron already installed"
+    new = (cur.rstrip("\n") + "\n" if cur.strip() else "") + line + "\n"
+    r = subprocess.run(["crontab", "-"], input=new,
+                       capture_output=True, text=True)
+    return ("daily retry cron installed" if r.returncode == 0
+            else f"failed: {r.stderr[-200:]}")
+
+
 ACTIONS = {"update_code": lambda c: do_update_code(),
            "extract_lines": lambda c: do_extract_lines(),
            "ev_cron_setup": lambda c: do_ev_cron_setup(),
+           "daily_retry_cron_setup": lambda c: do_daily_retry_cron_setup(),
            "collect_day": do_collect_day,
            "set_windows": do_set_windows,
            "dedup_data": lambda c: do_dedup_data(),

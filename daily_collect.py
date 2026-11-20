@@ -13,7 +13,21 @@ VM (agent.do_git_sync copies it explicitly), so a stall is visible
 off-VPS. Partial days (fetch misses inside an otherwise successful
 day) are flagged "partial" in the status file; they stay marked done
 (un-marking them is unsafe: the collector appends CSV rows with no
-dedupe, so a re-collect would duplicate the day's rows)."""
+dedupe, so a re-collect would duplicate the day's rows).
+
+Opus review fix 2026-11-21 (2-2): the retry loop above re-runs the
+collector for a day that failed. The collector builds a day's rows in
+memory and appends them only at the end, and its progress file is
+written after the appends, so ordinary failures (maintenance,
+DayUnavailable, fetch/parse errors) leave no rows and a retry is
+safe. The one hole is a process killed mid-append (reboot, OOM):
+rows for the day are on disk but the day is not marked done, and a
+re-collection would append the same rows again. strip_orphan_rows()
+closes that hole on the retry path only: before collecting a day
+that is not marked done, any rows already carrying its date are
+removed from the monthly CSVs. In the normal flow there are no such
+rows and the strip is a no-op."""
+import csv
 import json
 import subprocess
 import sys
@@ -44,14 +58,54 @@ def write_status(payload):
     tmp.replace(STATUS_PATH)
 
 
+CSV_KINDS = ("races", "entries", "results", "payouts")
+
+
+def strip_orphan_rows(d, tag):
+    """Remove rows dated `d` from the monthly CSVs (see module
+    docstring, 2-2). Returns {kind: rows_removed}. Only ever called
+    for a day that is not in the progress file's done list, and only
+    that day's rows are touched."""
+    iso = d.isoformat()
+    removed = {}
+    for kind in CSV_KINDS:
+        path = ROOT / "data" / f"{kind}_{tag}.csv"
+        if not path.exists():
+            continue
+        with path.open(newline="", encoding="utf-8") as f:
+            rows = list(csv.reader(f))
+        if not rows or "date" not in rows[0]:
+            continue
+        di = rows[0].index("date")
+        kept = [r for r in rows[1:] if len(r) <= di or r[di] != iso]
+        n = len(rows) - 1 - len(kept)
+        if n:
+            tmp = path.with_suffix(".tmp")
+            with tmp.open("w", newline="", encoding="utf-8") as f:
+                w = csv.writer(f)
+                w.writerow(rows[0])
+                w.writerows(kept)
+            tmp.replace(path)
+        removed[kind] = n
+    return removed
+
+
 def attempt(d, tag):
     """Run the collector for one day; return an outcome dict."""
+    stripped = {}
+    if d.isoformat() not in tag_progress(tag).get("done", []):
+        stripped = strip_orphan_rows(d, tag)
+        if any(stripped.values()):
+            print(f"  ! stripped orphan rows for {d}: {stripped}",
+                  flush=True)
     r = subprocess.run([str(PY), str(ROOT / "collector.py"),
                         "--start", d.isoformat(), "--end", d.isoformat(),
                         "--tag", tag],
                        cwd=ROOT, capture_output=True, text=True)
     lines = (r.stdout.strip().splitlines() or [""])
     out = {"rc": r.returncode, "last_line": lines[-1]}
+    if any(stripped.values()):
+        out["stripped_orphans"] = stripped
     if r.returncode != 0:
         out["status"] = "failed"
         err = (r.stderr.strip().splitlines() or [""])
