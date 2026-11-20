@@ -1,6 +1,6 @@
 [
  {
-  "id": "20261120-2135-ev-agent-code",
-  "action": "update_code"
+  "id": "20261120-2145-ev-cron-setup",
+  "action": "ev_cron_setup"
  }
 ]
