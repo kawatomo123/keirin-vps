@@ -222,6 +222,15 @@ def do_git_sync():
         names.append("backfill_status.json")
     for name in names:
         shutil.copy2(DATA / name, dest / name)
+    ev_src = ROOT / "ev_shadow"
+    if ev_src.exists():
+        ev_dest = GIT_REPO_DIR / "ev_shadow"
+        for src in sorted(ev_src.rglob("*")):
+            if src.is_file() and src.suffix in (".csv", ".gz"):
+                rel = src.relative_to(ev_src)
+                tgt = ev_dest / rel
+                tgt.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, tgt)
     subprocess.run(["git", "-C", str(GIT_REPO_DIR), "add", "-A"],
                    capture_output=True, text=True, env=env)
     r = subprocess.run(["git", "-C", str(GIT_REPO_DIR), "status", "--porcelain"],
@@ -322,8 +331,146 @@ def do_extract_lines():
     return f"extract_lines started pid={p.pid}"
 
 
+EV_DIR = ROOT / "ev_shadow"
+EV_SNAPSHOT = ("https://raw.githubusercontent.com/kawatomo123/keirin-vps/"
+               "main/predictions_snapshot.json")
+EV_BLOCK_MARKERS = ["システムメンテナンス中", "緊急メンテナンス中",
+                    "すべてのサービスを停止"]
+EV_UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"}
+
+
+def _ev_fetch(url, timeout=30):
+    import urllib.request as _u
+    req = _u.Request(url, headers=EV_UA)
+    with _u.urlopen(req, timeout=timeout) as r:
+        return r.read().decode("utf-8", errors="ignore")
+
+
+def _ev_text(html_text):
+    import html as _h
+    import re as _re
+    t = _re.sub(r"(?s)<(script|style).*?</\1>", " ", html_text)
+    t = _re.sub(r"<[^>]+>", " ", t)
+    return _re.sub(r"\s+", " ", _h.unescape(t))
+
+
+def _ev_slug_map(d):
+    import re as _re
+    import time as _time
+    cache = EV_DIR / f"slugmap_{d.isoformat()}.json"
+    if cache.exists() and _time.time() - cache.stat().st_mtime < 3600:
+        return json.loads(cache.read_text())
+    html_text = _ev_fetch(f"https://keirin.kdreams.jp/racecard/{d:%Y/%m/%d}/")
+    pairs = _re.findall(r"/([a-z0-9-]+)/racedetail/(\d{16})/", html_text)
+    m = {rid: slug for slug, rid in pairs}
+    EV_DIR.mkdir(parents=True, exist_ok=True)
+    cache.write_text(json.dumps(m))
+    return m
+
+
+def do_ev_capture():
+    """EV shadow capture on the VPS (stdlib only). Same contract as the
+    VM's ev_capture.py: for today's races starting in (now+4, now+25]
+    minutes, fetch the K-Dreams odds page once and store the page text
+    plus the model's picks/probabilities from the predictions snapshot
+    published in this repo. Captures land in ev_shadow/ and return to
+    the VM through the git data sync."""
+    import csv as _csv
+    import gzip as _gz
+    import re as _re
+    import time as _time
+    from datetime import timedelta
+    now = datetime.now()
+    today = now.date()
+    try:
+        doc = json.loads(_ev_fetch(EV_SNAPSHOT))
+    except Exception as e:
+        return f"snapshot fetch failed: {e!r}"
+    days = {x["date"]: x for x in doc.get("days", [])}
+    races = days.get(today.isoformat(), {}).get("races", [])
+    if not races:
+        return "no races for today in snapshot; skip"
+    EV_DIR.mkdir(parents=True, exist_ok=True)
+    manifest_path = EV_DIR / "manifest.csv"
+    done = set()
+    if manifest_path.exists():
+        with open(manifest_path, newline="") as f:
+            done = {row["race_id"] for row in _csv.DictReader(f)}
+    lo, hi = now + timedelta(minutes=4), now + timedelta(minutes=25)
+    targets = []
+    for r in races:
+        st = r.get("start_time") or ""
+        if not _re.fullmatch(r"\d{2}:\d{2}", st):
+            continue
+        start = datetime.combine(today, datetime.strptime(st, "%H:%M").time())
+        if lo < start <= hi and r["race_id"] not in done:
+            targets.append((start, r))
+    if not targets:
+        return "no races in window"
+    smap = _ev_slug_map(today)
+    raw_dir = EV_DIR / "raw" / today.isoformat()
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    new_file = not manifest_path.exists()
+    fails = captured = 0
+    with open(manifest_path, "a", newline="") as f:
+        w = _csv.writer(f)
+        if new_file:
+            w.writerow(["date", "race_id", "venue", "race_no", "start_time",
+                        "captured_at", "mins_before", "segment",
+                        "sanren_tan", "sanren_fuku", "nisya_tan", "riders_json"])
+        for start, r in sorted(targets):
+            slug = smap.get(r["race_id"])
+            if not slug:
+                continue
+            url = (f"https://keirin.kdreams.jp/{slug}/racedetail/"
+                   f"{r['race_id']}/?pageType=odds&kakeshikiType=3rentan")
+            try:
+                text = _ev_text(_ev_fetch(url))
+            except Exception:
+                fails += 1
+                if fails >= 3:
+                    return f"circuit breaker: fetch failures (captured {captured})"
+                continue
+            if any(m in text for m in EV_BLOCK_MARKERS):
+                return f"circuit breaker: maintenance page (captured {captured})"
+            if "人気順" not in text:
+                continue
+            fails = 0
+            with _gz.open(raw_dir / f"{r['race_id']}.txt.gz", "wt",
+                          encoding="utf-8") as gz:
+                gz.write(text)
+            riders = [{"car_no": x["car_no"], "p_win": x["p_win"],
+                       "p_top3": x["p_top3"]} for x in r.get("riders", [])]
+            w.writerow([today.isoformat(), r["race_id"], r["venue"],
+                        r["race_no"], r["start_time"],
+                        now.strftime("%Y-%m-%d %H:%M:%S"),
+                        round((start - now).total_seconds() / 60, 1),
+                        r.get("segment", ""), r.get("sanren_tan", ""),
+                        r.get("sanren_fuku", ""), r.get("nisya_tan", ""),
+                        json.dumps(riders, ensure_ascii=False)])
+            f.flush()
+            captured += 1
+            _time.sleep(1)
+    return f"captured {captured}"
+
+
+def do_ev_cron_setup():
+    """Install a */5 crontab line running `agent.py --ev-capture`
+    (idempotent, mirrors the --sync-data line from git_setup)."""
+    line = (f"*/5 * * * * {ROOT}/venv/bin/python {ROOT}/agent.py "
+            f"--ev-capture >> {DATA}/ev_capture.log 2>&1")
+    cur = subprocess.run(["crontab", "-l"], capture_output=True, text=True).stdout
+    if "--ev-capture" in cur:
+        return "ev cron already installed"
+    new = (cur.rstrip("\n") + "\n" if cur.strip() else "") + line + "\n"
+    r = subprocess.run(["crontab", "-"], input=new,
+                       capture_output=True, text=True)
+    return "ev cron installed" if r.returncode == 0 else f"failed: {r.stderr[-200:]}"
+
+
 ACTIONS = {"update_code": lambda c: do_update_code(),
            "extract_lines": lambda c: do_extract_lines(),
+           "ev_cron_setup": lambda c: do_ev_cron_setup(),
            "collect_day": do_collect_day,
            "set_windows": do_set_windows,
            "dedup_data": lambda c: do_dedup_data(),
@@ -359,6 +506,12 @@ def main():
             print(do_git_sync())
         except Exception as e:
             print(f"sync-data error: {e!r}")
+        return
+    if "--ev-capture" in sys.argv:
+        try:
+            print(do_ev_capture())
+        except Exception as e:
+            print(f"ev-capture error: {e!r}")
         return
     rem = remote()
     if not rem:
