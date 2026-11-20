@@ -220,6 +220,8 @@ def do_git_sync():
     names += [Path(p).name for p in _glob.glob(str(DATA / "progress_*.json"))]
     if (DATA / "backfill_status.json").exists():
         names.append("backfill_status.json")
+    if (DATA / "daily_collect_status.json").exists():
+        names.append("daily_collect_status.json")
     for name in names:
         shutil.copy2(DATA / name, dest / name)
     ev_src = ROOT / "ev_shadow"
@@ -250,7 +252,8 @@ def do_git_sync():
 
 def do_status():
     snap = {}
-    for name in ["backfill_status.json", "agent_state.json"]:
+    for name in ["backfill_status.json", "agent_state.json",
+                 "daily_collect_status.json"]:
         p = DATA / name
         if p.exists():
             snap[name] = json.loads(p.read_text())
