@@ -1,6 +1,5 @@
 [
- {
-  "id": "20261120-2145-ev-cron-setup",
-  "action": "ev_cron_setup"
- }
+ {"id": "20261121-0118-status", "action": "status"},
+ {"id": "20261121-0118-collect-1119", "action": "collect_day", "date": "2026-11-19", "tag": "202611"},
+ {"id": "20261121-0118-collect-1120", "action": "collect_day", "date": "2026-11-20", "tag": "202611"}
 ]
