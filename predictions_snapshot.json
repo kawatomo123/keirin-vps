@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T10:15:00+00:00",
+ "generated_at": "2026-11-21T11:02:54+00:00",
  "model": "men v10m (v6+Massey) / girls v1",
  "days": [
   {
@@ -2044,72 +2044,72 @@
        "car_no": 1,
        "frame": 1,
        "name": "寺崎浩平",
-       "p_win": 0.3241,
-       "p_top3": 0.659,
+       "p_win": 0.3455,
+       "p_top3": 0.7096,
        "score": 116.75
       },
       {
        "car_no": 5,
        "frame": 1,
        "name": "山口拳矢",
-       "p_win": 0.2501,
-       "p_top3": 0.5428,
+       "p_win": 0.2068,
+       "p_top3": 0.5137,
        "score": 115.0
       },
       {
        "car_no": 3,
        "frame": 3,
        "name": "取鳥雄吾",
-       "p_win": 0.1173,
-       "p_top3": 0.3412,
+       "p_win": 0.1144,
+       "p_top3": 0.3267,
        "score": 113.03
-      },
-      {
-       "car_no": 7,
-       "frame": 2,
-       "name": "南修二",
-       "p_win": 0.0832,
-       "p_top3": 0.3935,
-       "score": 114.22
       },
       {
        "car_no": 2,
        "frame": 2,
        "name": "菅田壱道",
-       "p_win": 0.0815,
-       "p_top3": 0.3712,
+       "p_win": 0.0945,
+       "p_top3": 0.3885,
        "score": 115.62
+      },
+      {
+       "car_no": 7,
+       "frame": 2,
+       "name": "南修二",
+       "p_win": 0.0881,
+       "p_top3": 0.4005,
+       "score": 114.22
       },
       {
        "car_no": 9,
        "frame": 2,
        "name": "鈴木玄人",
-       "p_win": 0.0485,
-       "p_top3": 0.2546,
+       "p_win": 0.0712,
+       "p_top3": 0.2879,
        "score": 114.36
       },
       {
        "car_no": 8,
        "frame": 6,
        "name": "橋本強",
-       "p_win": 0.0368,
-       "p_top3": 0.1706,
+       "p_win": 0.0385,
+       "p_top3": 0.2146,
        "score": 109.58
       },
       {
        "car_no": 4,
        "frame": 4,
        "name": "和田圭",
-       "p_win": 0.0349,
-       "p_top3": 0.2081,
+       "p_win": 0.0214,
+       "p_top3": 0.2186,
        "score": 109.67
       },
       {
        "car_no": 6,
        "frame": 5,
        "name": "宿口陽一",
-       "p_win": 0.0237,
-       "p_top3": 0.1502,
+       "p_win": 0.0198,
+       "p_top3": 0.1365,
        "score": 106.78
       }
      ],
@@ -2130,84 +2130,84 @@
      "segment": "men",
      "riders": [
       {
-       "car_no": 3,
-       "frame": 3,
-       "name": "犬伏湧也",
-       "p_win": 0.407,
-       "p_top3": 0.7148,
-       "score": 120.31
-      },
-      {
        "car_no": 7,
        "frame": 1,
        "name": "松本貴治",
-       "p_win": 0.2795,
-       "p_top3": 0.7782,
+       "p_win": 0.4011,
+       "p_top3": 0.766,
        "score": 118.42
+      },
+      {
+       "car_no": 3,
+       "frame": 3,
+       "name": "犬伏湧也",
+       "p_win": 0.3259,
+       "p_top3": 0.7566,
+       "score": 120.31
       },
       {
        "car_no": 1,
        "frame": 1,
        "name": "阿部拓真",
-       "p_win": 0.1046,
-       "p_top3": 0.3593,
+       "p_win": 0.0719,
+       "p_top3": 0.2985,
        "score": 115.75
       },
       {
        "car_no": 2,
        "frame": 2,
        "name": "脇本雄太",
-       "p_win": 0.0914,
-       "p_top3": 0.2978,
+       "p_win": 0.0673,
+       "p_top3": 0.3048,
        "score": 112.76
       },
       {
        "car_no": 9,
        "frame": 2,
        "name": "新田祐大",
-       "p_win": 0.0592,
-       "p_top3": 0.268,
+       "p_win": 0.0661,
+       "p_top3": 0.2859,
        "score": 112.94
       },
       {
        "car_no": 8,
        "frame": 6,
        "name": "松崎広太",
-       "p_win": 0.0179,
-       "p_top3": 0.1069,
+       "p_win": 0.0245,
+       "p_top3": 0.1513,
        "score": 108.39
-      },
-      {
-       "car_no": 4,
-       "frame": 4,
-       "name": "村田雅一",
-       "p_win": 0.0167,
-       "p_top3": 0.1151,
-       "score": 108.55
       },
       {
        "car_no": 5,
        "frame": 2,
        "name": "小原太樹",
-       "p_win": 0.0165,
-       "p_top3": 0.3157,
+       "p_win": 0.0186,
+       "p_top3": 0.2731,
        "score": 112.32
+      },
+      {
+       "car_no": 4,
+       "frame": 4,
+       "name": "村田雅一",
+       "p_win": 0.0175,
+       "p_top3": 0.1242,
+       "score": 108.55
       },
       {
        "car_no": 6,
        "frame": 5,
        "name": "芦澤大輔",
-       "p_win": 0.0073,
-       "p_top3": 0.065,
+       "p_win": 0.0071,
+       "p_top3": 0.0761,
        "score": 105.14
       }
      ],
-     "nisya_tan": "3-7",
+     "nisya_tan": "7-3",
      "sanren_tan": "7-3-1",
      "nisya_fuku": "3=7",
      "sanren_fuku": "1=3=7",
      "wide": "3=7",
-     "waku_tan": "3-1",
+     "waku_tan": "1-3",
      "waku_fuku": "1=3"
     },
     {
@@ -2222,82 +2222,82 @@
        "car_no": 2,
        "frame": 2,
        "name": "古性優作",
-       "p_win": 0.4115,
-       "p_top3": 0.7176,
+       "p_win": 0.3161,
+       "p_top3": 0.7499,
        "score": 119.1
-      },
-      {
-       "car_no": 1,
-       "frame": 1,
-       "name": "山崎賢人",
-       "p_win": 0.1293,
-       "p_top3": 0.4398,
-       "score": 112.89
-      },
-      {
-       "car_no": 6,
-       "frame": 5,
-       "name": "北津留翼",
-       "p_win": 0.1126,
-       "p_top3": 0.3158,
-       "score": 108.67
-      },
-      {
-       "car_no": 8,
-       "frame": 6,
-       "name": "稲川翔",
-       "p_win": 0.1013,
-       "p_top3": 0.3822,
-       "score": 110.07
       },
       {
        "car_no": 3,
        "frame": 3,
        "name": "佐々木悠葵",
-       "p_win": 0.0992,
-       "p_top3": 0.3585,
+       "p_win": 0.1662,
+       "p_top3": 0.4435,
        "score": 115.84
+      },
+      {
+       "car_no": 6,
+       "frame": 5,
+       "name": "北津留翼",
+       "p_win": 0.1391,
+       "p_top3": 0.3322,
+       "score": 108.67
+      },
+      {
+       "car_no": 1,
+       "frame": 1,
+       "name": "山崎賢人",
+       "p_win": 0.1275,
+       "p_top3": 0.4375,
+       "score": 112.89
+      },
+      {
+       "car_no": 8,
+       "frame": 6,
+       "name": "稲川翔",
+       "p_win": 0.0988,
+       "p_top3": 0.4046,
+       "score": 110.07
+      },
+      {
+       "car_no": 7,
+       "frame": 2,
+       "name": "武藤龍生",
+       "p_win": 0.0446,
+       "p_top3": 0.2713,
+       "score": 113.88
       },
       {
        "car_no": 5,
        "frame": 2,
        "name": "山田庸平",
-       "p_win": 0.0609,
-       "p_top3": 0.3476,
+       "p_win": 0.0419,
+       "p_top3": 0.2741,
        "score": 112.08
       },
       {
        "car_no": 4,
        "frame": 4,
        "name": "和田真久留",
-       "p_win": 0.0345,
-       "p_top3": 0.1523,
+       "p_win": 0.036,
+       "p_top3": 0.1824,
        "score": 110.44
-      },
-      {
-       "car_no": 7,
-       "frame": 2,
-       "name": "武藤龍生",
-       "p_win": 0.0286,
-       "p_top3": 0.2385,
-       "score": 113.88
       },
       {
        "car_no": 9,
        "frame": 2,
        "name": "和田健太郎",
-       "p_win": 0.0222,
-       "p_top3": 0.1622,
+       "p_win": 0.0298,
+       "p_top3": 0.1836,
        "score": 113.0
       }
      ],
-     "nisya_tan": "2-1",
-     "sanren_tan": "2-8-1",
-     "nisya_fuku": "1=2",
-     "sanren_fuku": "1=2=8",
-     "wide": "1=2",
-     "waku_tan": "2-1",
-     "waku_fuku": "1=2"
+     "nisya_tan": "2-3",
+     "sanren_tan": "2-3-8",
+     "nisya_fuku": "2=3",
+     "sanren_fuku": "2=3=8",
+     "wide": "2=3",
+     "waku_tan": "2-3",
+     "waku_fuku": "2=3"
     },
     {
      "race_id": "8120261118040012",
@@ -2311,72 +2311,72 @@
        "car_no": 1,
        "frame": 1,
        "name": "郡司浩平",
-       "p_win": 0.2966,
-       "p_top3": 0.5599,
+       "p_win": 0.299,
+       "p_top3": 0.5624,
        "score": 116.0
       },
       {
        "car_no": 7,
        "frame": 1,
        "name": "清水裕友",
-       "p_win": 0.2459,
-       "p_top3": 0.5288,
+       "p_win": 0.2496,
+       "p_top3": 0.5405,
        "score": 116.47
       },
       {
        "car_no": 5,
        "frame": 1,
        "name": "石原颯",
-       "p_win": 0.1036,
-       "p_top3": 0.4654,
+       "p_win": 0.1026,
+       "p_top3": 0.4731,
        "score": 116.79
       },
       {
        "car_no": 8,
        "frame": 6,
        "name": "坂井洋",
-       "p_win": 0.1016,
-       "p_top3": 0.3821,
+       "p_win": 0.1001,
+       "p_top3": 0.382,
        "score": 113.29
       },
       {
        "car_no": 9,
        "frame": 1,
        "name": "深谷知広",
-       "p_win": 0.075,
-       "p_top3": 0.3184,
+       "p_win": 0.0738,
+       "p_top3": 0.3181,
        "score": 116.61
       },
       {
        "car_no": 2,
        "frame": 2,
        "name": "松浦悠士",
-       "p_win": 0.0681,
-       "p_top3": 0.4305,
+       "p_win": 0.0669,
+       "p_top3": 0.4303,
        "score": 115.0
       },
       {
        "car_no": 3,
        "frame": 3,
        "name": "眞杉匠",
-       "p_win": 0.0586,
-       "p_top3": 0.3062,
+       "p_win": 0.0585,
+       "p_top3": 0.3047,
        "score": 117.41
       },
       {
        "car_no": 4,
        "frame": 4,
        "name": "荒井崇博",
-       "p_win": 0.0401,
-       "p_top3": 0.3462,
+       "p_win": 0.0391,
+       "p_top3": 0.3473,
        "score": 114.66
       },
       {
        "car_no": 6,
        "frame": 5,
        "name": "吉澤純平",
-       "p_win": 0.0104,
-       "p_top3": 0.2048,
+       "p_win": 0.0103,
+       "p_top3": 0.208,
        "score": 112.07
       }
      ],
