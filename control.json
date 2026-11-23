@@ -1,14 +1,6 @@
 [
  {
-  "id": "20261123-apr2-dedup",
-  "action": "dedup_data"
- },
- {
-  "id": "20261123-apr2-gitsync",
-  "action": "git_sync_data"
- },
- {
-  "id": "20261123-apr2-status",
-  "action": "status"
+  "id": "20261123-apr3-update-code",
+  "action": "update_code"
  }
 ]

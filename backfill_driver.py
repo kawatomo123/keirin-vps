@@ -23,6 +23,17 @@ SHARED_STATUS = None
 # written by the control agent: {"windows": [["21:05","02:55"], ["04:05","05:40"]]}
 WINDOWS = [(dtime(21, 5), dtime(23, 59)), (dtime(0, 0), dtime(2, 55)), (dtime(4, 5), dtime(5, 40))]
 
+# Days verified (by fetching the K-Dreams racecard index directly) to have
+# had no races at all: the index legitimately lists zero races, so the
+# collector's DayUnavailable guard (rc=2) can never pass them and the month
+# would stall on that day forever. The driver records these days as done
+# without attempting collection. To register a future verified gap, add
+# its ISO date here (one line per day).
+VERIFIED_GAP_DAYS = {
+    "2022-04-05",  # verified 2026-11-23: index lists 0 races
+    "2022-04-06",  # verified 2026-11-23: index lists 0 races
+}
+
 
 def _parse_windows(raw):
     out = []
@@ -110,6 +121,21 @@ def tag_progress(tag):
     if p.exists():
         return json.loads(p.read_text())
     return {"done": [], "stats": {}}
+
+
+def mark_gap_day_done(tag, day_iso):
+    """Record a verified gap day as done in the tag's progress file, in
+    exactly the format collector.py writes. Only the worker that claimed
+    the month ever touches its progress file (claims are exclusive), so
+    this cannot race the collector's own writes."""
+    p = ROOT / "data" / f"progress_{tag}.json"
+    prog = tag_progress(tag)
+    done = set(prog["done"])
+    done.add(day_iso)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps({"done": sorted(done),
+                             "stats": prog.get("stats", {})},
+                            ensure_ascii=False, indent=1))
 
 
 def acquire_lock():
@@ -202,6 +228,16 @@ def run_side(side, claims):
                 print(f"window ended; {side} stops at {tag} {d}", flush=True)
                 finished = False
                 break
+            if d.isoformat() in VERIFIED_GAP_DAYS:
+                # Verified gap: no races were held on this day, so there
+                # is nothing to collect. Record it done and move on,
+                # instead of stalling this side on the collector's rc=2.
+                mark_gap_day_done(tag, d.isoformat())
+                print(f"{d}: verified gap day; recorded done ({side})", flush=True)
+                update_status(last_day=d.isoformat(),
+                              last_result="verified gap day",
+                              **{f"last_day_{side}": d.isoformat()})
+                continue
             print(f"collect {d} tag {tag} ({side})", flush=True)
             r = subprocess.run([str(PY), str(ROOT / "collector.py"),
                                 "--start", d.isoformat(), "--end", d.isoformat(), "--tag", tag],
