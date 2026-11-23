@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T09:45:15+00:00",
+  "generated_at": "2026-11-23T10:15:09+00:00",
   "model": "men v10m (v6+Massey) / girls v1",
   "days": [
     {
@@ -6614,6 +6614,3533 @@
           "wide": "1=2",
           "waku_tan": "2-1",
           "waku_fuku": "1=2"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "partial": false,
+      "races": [
+        {
+          "race_id": "5320261122030001",
+          "venue": "奈良",
+          "race_no": 1,
+          "race_name": "チャレンジ一般",
+          "start_time": "11:17",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "伊藤之人",
+              "p_win": 0.5127,
+              "p_top3": 0.8778,
+              "score": 71.57
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "旭啓介",
+              "p_win": 0.2218,
+              "p_top3": 0.51,
+              "score": 69.22
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "齋藤昌太",
+              "p_win": 0.1971,
+              "p_top3": 0.8175,
+              "score": 69.96
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "岡嵜浩一",
+              "p_win": 0.0441,
+              "p_top3": 0.2979,
+              "score": 69.09
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "千澤大輔",
+              "p_win": 0.0242,
+              "p_top3": 0.3546,
+              "score": 66.16
+            }
+          ],
+          "nisya_tan": "2-3",
+          "sanren_tan": "2-5-3",
+          "nisya_fuku": "2=3",
+          "sanren_fuku": "2=3=5",
+          "wide": "2=3",
+          "waku_tan": "2-3",
+          "waku_fuku": "2=3"
+        },
+        {
+          "race_id": "5320261122030002",
+          "venue": "奈良",
+          "race_no": 2,
+          "race_name": "チャレンジ一般",
+          "start_time": "11:41",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "関戸努",
+              "p_win": 0.3287,
+              "p_top3": 0.6939,
+              "score": 68.88
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "富永昌久",
+              "p_win": 0.2583,
+              "p_top3": 0.7579,
+              "score": 69.9
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "木下章",
+              "p_win": 0.1433,
+              "p_top3": 0.4457,
+              "score": 69.07
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "高橋由記",
+              "p_win": 0.1231,
+              "p_top3": 0.5338,
+              "score": 69.86
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "鈴木雄一朗",
+              "p_win": 0.0772,
+              "p_top3": 0.2031,
+              "score": 63.85
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "藤原義浩",
+              "p_win": 0.0695,
+              "p_top3": 0.3248,
+              "score": 66.47
+            }
+          ],
+          "nisya_tan": "4-5",
+          "sanren_tan": "5-4-6",
+          "nisya_fuku": "4=5",
+          "sanren_fuku": "4=5=6",
+          "wide": "4=5",
+          "waku_tan": "4-5",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "5320261122030003",
+          "venue": "奈良",
+          "race_no": 3,
+          "race_name": "チャレンジ選抜",
+          "start_time": "12:07",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "松本一志",
+              "p_win": 0.4285,
+              "p_top3": 0.7235,
+              "score": 74.0
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "塩川真一郎",
+              "p_win": 0.1724,
+              "p_top3": 0.7739,
+              "score": 75.88
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "関谷哲平",
+              "p_win": 0.1427,
+              "p_top3": 0.3796,
+              "score": 70.83
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "駒壽直人",
+              "p_win": 0.1267,
+              "p_top3": 0.342,
+              "score": 70.29
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "光岡義洋",
+              "p_win": 0.0728,
+              "p_top3": 0.4336,
+              "score": 71.88
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "川上真二郎",
+              "p_win": 0.0376,
+              "p_top3": 0.3978,
+              "score": 71.33
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "塚本貴雄",
+              "p_win": 0.0193,
+              "p_top3": 0.2986,
+              "score": 70.96
+            }
+          ],
+          "nisya_tan": "2-5",
+          "sanren_tan": "2-5-3",
+          "nisya_fuku": "2=5",
+          "sanren_fuku": "2=3=5",
+          "wide": "2=5",
+          "waku_tan": "2-5",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "5320261122030004",
+          "venue": "奈良",
+          "race_no": 4,
+          "race_name": "チャレンジ決勝",
+          "start_time": "12:33",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 1,
+              "name": "吉岡竜太",
+              "p_win": 0.4172,
+              "p_top3": 0.8552,
+              "score": 78.95
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "長川達哉",
+              "p_win": 0.2721,
+              "p_top3": 0.8493,
+              "score": 79.15
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "秋山太洋",
+              "p_win": 0.143,
+              "p_top3": 0.5848,
+              "score": 78.33
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "片岡遼真",
+              "p_win": 0.111,
+              "p_top3": 0.5216,
+              "score": 76.45
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "岡崎克政",
+              "p_win": 0.0345,
+              "p_top3": 0.153,
+              "score": 71.86
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "里見恒平",
+              "p_win": 0.0182,
+              "p_top3": 0.2613,
+              "score": 71.66
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "小磯知也",
+              "p_win": 0.0042,
+              "p_top3": 0.0779,
+              "score": 70.59
+            }
+          ],
+          "nisya_tan": "7-1",
+          "sanren_tan": "7-1-4",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=4=7",
+          "wide": "1=7",
+          "waku_tan": "1-4",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "5320261122030005",
+          "venue": "奈良",
+          "race_no": 5,
+          "race_name": "ガールズ一般",
+          "start_time": "13:01",
+          "segment": "girls",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "小泉夢菜",
+              "p_win": 0.6899,
+              "p_top3": 0.9225,
+              "score": 52.04
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "梶原百香",
+              "p_win": 0.2029,
+              "p_top3": 0.7509,
+              "score": 50.23
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "アニー紗世子",
+              "p_win": 0.0534,
+              "p_top3": 0.321,
+              "score": 49.14
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "溝口香奈",
+              "p_win": 0.0261,
+              "p_top3": 0.3254,
+              "score": 46.85
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "橋本のこ",
+              "p_win": 0.0225,
+              "p_top3": 0.2798,
+              "score": 47.36
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "大和久保美",
+              "p_win": 0.0052,
+              "p_top3": 0.5164,
+              "score": 48.53
+            }
+          ],
+          "nisya_tan": "1-3",
+          "sanren_tan": "1-3-5",
+          "nisya_fuku": "1=3",
+          "sanren_fuku": "1=3=5",
+          "wide": "1=3",
+          "waku_tan": "1-3",
+          "waku_fuku": "1=3"
+        },
+        {
+          "race_id": "5320261122030006",
+          "venue": "奈良",
+          "race_no": 6,
+          "race_name": "Ａ級特一般",
+          "start_time": "13:29",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "緒方慎太朗",
+              "p_win": 0.3935,
+              "p_top3": 0.7025,
+              "score": 82.33
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "藤原夏志",
+              "p_win": 0.1817,
+              "p_top3": 0.5389,
+              "score": 82.93
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "金子浩貴",
+              "p_win": 0.1662,
+              "p_top3": 0.5949,
+              "score": 84.87
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "川又裕樹",
+              "p_win": 0.1566,
+              "p_top3": 0.5998,
+              "score": 86.43
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "佐野恭太",
+              "p_win": 0.0558,
+              "p_top3": 0.2177,
+              "score": 83.16
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "手島志誠",
+              "p_win": 0.0236,
+              "p_top3": 0.1506,
+              "score": 80.95
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "深見仁哉",
+              "p_win": 0.0225,
+              "p_top3": 0.2838,
+              "score": 80.82
+            }
+          ],
+          "nisya_tan": "2-1",
+          "sanren_tan": "2-7-4",
+          "nisya_fuku": "1=2",
+          "sanren_fuku": "2=4=7",
+          "wide": "1=2",
+          "waku_tan": "2-1",
+          "waku_fuku": "1=2"
+        },
+        {
+          "race_id": "5320261122030007",
+          "venue": "奈良",
+          "race_no": 7,
+          "race_name": "Ａ級特一般",
+          "start_time": "13:57",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "佐藤雅彦",
+              "p_win": 0.468,
+              "p_top3": 0.8191,
+              "score": 89.03
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "谷本奨輝",
+              "p_win": 0.187,
+              "p_top3": 0.4385,
+              "score": 86.25
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "神山尚",
+              "p_win": 0.1696,
+              "p_top3": 0.4338,
+              "score": 82.37
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "伊藤健詞",
+              "p_win": 0.0898,
+              "p_top3": 0.3959,
+              "score": 84.32
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "高橋隆太",
+              "p_win": 0.0429,
+              "p_top3": 0.2366,
+              "score": 82.45
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "中澤央治",
+              "p_win": 0.0297,
+              "p_top3": 0.3066,
+              "score": 85.03
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "阿部宏之",
+              "p_win": 0.013,
+              "p_top3": 0.2665,
+              "score": 80.14
+            }
+          ],
+          "nisya_tan": "4-5",
+          "sanren_tan": "4-1-5",
+          "nisya_fuku": "4=5",
+          "sanren_fuku": "1=4=5",
+          "wide": "4=5",
+          "waku_tan": "4-5",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "5320261122030008",
+          "venue": "奈良",
+          "race_no": 8,
+          "race_name": "Ａ級特選",
+          "start_time": "14:25",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "山下祐輔",
+              "p_win": 0.584,
+              "p_top3": 0.8219,
+              "score": 93.04
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "梶原大地",
+              "p_win": 0.1125,
+              "p_top3": 0.4064,
+              "score": 87.42
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "山口智弘",
+              "p_win": 0.0932,
+              "p_top3": 0.5435,
+              "score": 90.34
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "高橋大輝",
+              "p_win": 0.0836,
+              "p_top3": 0.433,
+              "score": 83.0
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "宮越孝治",
+              "p_win": 0.0637,
+              "p_top3": 0.4165,
+              "score": 91.2
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "細川貴史",
+              "p_win": 0.0446,
+              "p_top3": 0.2911,
+              "score": 85.0
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "田村風起",
+              "p_win": 0.0184,
+              "p_top3": 0.2586,
+              "score": 84.28
+            }
+          ],
+          "nisya_tan": "2-1",
+          "sanren_tan": "2-3-4",
+          "nisya_fuku": "1=2",
+          "sanren_fuku": "2=3=4",
+          "wide": "1=2",
+          "waku_tan": "2-1",
+          "waku_fuku": "1=2"
+        },
+        {
+          "race_id": "5320261122030009",
+          "venue": "奈良",
+          "race_no": 9,
+          "race_name": "Ａ級特選",
+          "start_time": "14:53",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "半田誠",
+              "p_win": 0.6743,
+              "p_top3": 0.9405,
+              "score": 95.8
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "田口勇介",
+              "p_win": 0.1927,
+              "p_top3": 0.6379,
+              "score": 92.29
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "伊藤大彦",
+              "p_win": 0.0501,
+              "p_top3": 0.5528,
+              "score": 89.86
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "土井慎二",
+              "p_win": 0.0373,
+              "p_top3": 0.1694,
+              "score": 84.81
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "木村貴宏",
+              "p_win": 0.0294,
+              "p_top3": 0.4679,
+              "score": 86.88
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "巴直也",
+              "p_win": 0.0099,
+              "p_top3": 0.2837,
+              "score": 82.42
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "吉永和生",
+              "p_win": 0.0062,
+              "p_top3": 0.0695,
+              "score": 82.69
+            }
+          ],
+          "nisya_tan": "7-5",
+          "sanren_tan": "7-5-1",
+          "nisya_fuku": "5=7",
+          "sanren_fuku": "1=5=7",
+          "wide": "5=7",
+          "waku_tan": "2-5",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "5320261122030010",
+          "venue": "奈良",
+          "race_no": 10,
+          "race_name": "ガールズ決勝",
+          "start_time": "15:21",
+          "segment": "girls",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "鈴木美教",
+              "p_win": 0.6629,
+              "p_top3": 0.6715,
+              "score": 55.47
+            },
+            {
+              "car_no": 7,
+              "frame": 1,
+              "name": "小原乃亜",
+              "p_win": 0.2406,
+              "p_top3": 0.7428,
+              "score": 56.22
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "元砂七夕美",
+              "p_win": 0.0389,
+              "p_top3": 0.5993,
+              "score": 55.62
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "土井柚姫",
+              "p_win": 0.019,
+              "p_top3": 0.0605,
+              "score": 50.08
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "宮地寧々",
+              "p_win": 0.0176,
+              "p_top3": 0.1662,
+              "score": 50.37
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "吉村美有紀",
+              "p_win": 0.0153,
+              "p_top3": 0.231,
+              "score": 49.46
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "戸田瑞姫",
+              "p_win": 0.0058,
+              "p_top3": 0.4042,
+              "score": 53.64
+            }
+          ],
+          "nisya_tan": "3-7",
+          "sanren_tan": "3-7-1",
+          "nisya_fuku": "3=7",
+          "sanren_fuku": "1=3=7",
+          "wide": "3=7",
+          "waku_tan": "3-1",
+          "waku_fuku": "1=3"
+        },
+        {
+          "race_id": "5320261122030011",
+          "venue": "奈良",
+          "race_no": 11,
+          "race_name": "Ａ級決勝",
+          "start_time": "15:52",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "滝本泰行",
+              "p_win": 0.4367,
+              "p_top3": 0.8309,
+              "score": 93.4
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "村田瑞季",
+              "p_win": 0.2518,
+              "p_top3": 0.7631,
+              "score": 93.79
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "吉岡優太",
+              "p_win": 0.1593,
+              "p_top3": 0.5298,
+              "score": 90.77
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "松田優一",
+              "p_win": 0.073,
+              "p_top3": 0.4147,
+              "score": 89.33
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "大木雅也",
+              "p_win": 0.0285,
+              "p_top3": 0.5018,
+              "score": 90.44
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "水森湧太",
+              "p_win": 0.0281,
+              "p_top3": 0.2188,
+              "score": 85.72
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "岡本翔",
+              "p_win": 0.0226,
+              "p_top3": 0.1268,
+              "score": 82.66
+            }
+          ],
+          "nisya_tan": "5-1",
+          "sanren_tan": "5-1-3",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=3=5",
+          "wide": "1=5",
+          "waku_tan": "5-1",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "6220261122030001",
+          "venue": "広島",
+          "race_no": 1,
+          "race_name": "Ａ級一般",
+          "start_time": "08:50",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "松本卓也",
+              "p_win": 0.364,
+              "p_top3": 0.7163,
+              "score": 85.87
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "堀越翔己",
+              "p_win": 0.2482,
+              "p_top3": 0.5381,
+              "score": 81.66
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "佐伯辰哉",
+              "p_win": 0.1562,
+              "p_top3": 0.4182,
+              "score": 78.38
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "小峰烈",
+              "p_win": 0.092,
+              "p_top3": 0.3728,
+              "score": 81.37
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "小島雅章",
+              "p_win": 0.077,
+              "p_top3": 0.2976,
+              "score": 82.8
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "十文字菊雄",
+              "p_win": 0.0458,
+              "p_top3": 0.4905,
+              "score": 83.38
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "米嶋賢二",
+              "p_win": 0.017,
+              "p_top3": 0.1548,
+              "score": 78.46
+            }
+          ],
+          "nisya_tan": "3-2",
+          "sanren_tan": "3-2-5",
+          "nisya_fuku": "2=3",
+          "sanren_fuku": "2=3=5",
+          "wide": "2=3",
+          "waku_tan": "3-2",
+          "waku_fuku": "2=3"
+        },
+        {
+          "race_id": "6220261122030002",
+          "venue": "広島",
+          "race_no": 2,
+          "race_name": "Ａ級一般",
+          "start_time": "09:10",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "山崎悟",
+              "p_win": 0.2972,
+              "p_top3": 0.6488,
+              "score": 84.0
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "田頭寛之",
+              "p_win": 0.242,
+              "p_top3": 0.6576,
+              "score": 84.29
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "長松大祐",
+              "p_win": 0.2395,
+              "p_top3": 0.4892,
+              "score": 84.95
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "眞砂英作",
+              "p_win": 0.0977,
+              "p_top3": 0.3493,
+              "score": 83.35
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "高橋紀史",
+              "p_win": 0.0565,
+              "p_top3": 0.2633,
+              "score": 83.25
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "山信田学",
+              "p_win": 0.0482,
+              "p_top3": 0.4793,
+              "score": 82.59
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "行成大祐",
+              "p_win": 0.019,
+              "p_top3": 0.1164,
+              "score": 80.0
+            }
+          ],
+          "nisya_tan": "5-1",
+          "sanren_tan": "5-1-3",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=3=5",
+          "wide": "1=5",
+          "waku_tan": "5-1",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "6220261122030003",
+          "venue": "広島",
+          "race_no": 3,
+          "race_name": "Ａ級一般",
+          "start_time": "09:30",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "高橋幸司",
+              "p_win": 0.4802,
+              "p_top3": 0.8625,
+              "score": 87.33
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "藤原亮太",
+              "p_win": 0.1962,
+              "p_top3": 0.5973,
+              "score": 81.25
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "夏目新吾",
+              "p_win": 0.1309,
+              "p_top3": 0.4308,
+              "score": 83.41
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "中曽直彦",
+              "p_win": 0.1056,
+              "p_top3": 0.5052,
+              "score": 83.92
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "佐藤啓斗",
+              "p_win": 0.0583,
+              "p_top3": 0.1632,
+              "score": 79.03
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "宮倉勇",
+              "p_win": 0.023,
+              "p_top3": 0.4431,
+              "score": 81.42
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "小谷文康",
+              "p_win": 0.0059,
+              "p_top3": 0.3014,
+              "score": 78.5
+            }
+          ],
+          "nisya_tan": "1-5",
+          "sanren_tan": "1-5-7",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=5=7",
+          "wide": "1=5",
+          "waku_tan": "1-5",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "6220261122030004",
+          "venue": "広島",
+          "race_no": 4,
+          "race_name": "Ａ級特選",
+          "start_time": "09:50",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "曽我圭佑",
+              "p_win": 0.4823,
+              "p_top3": 0.8508,
+              "score": 91.25
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "坂本晃輝",
+              "p_win": 0.2984,
+              "p_top3": 0.8133,
+              "score": 87.9
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "坂本将太郎",
+              "p_win": 0.1069,
+              "p_top3": 0.4061,
+              "score": 87.25
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "加賀美智史",
+              "p_win": 0.0296,
+              "p_top3": 0.1354,
+              "score": 81.61
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "江本博明",
+              "p_win": 0.0285,
+              "p_top3": 0.2015,
+              "score": 84.44
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "立花成泰",
+              "p_win": 0.0282,
+              "p_top3": 0.2025,
+              "score": 83.59
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "阿部充宏",
+              "p_win": 0.0261,
+              "p_top3": 0.5035,
+              "score": 86.0
+            }
+          ],
+          "nisya_tan": "3-5",
+          "sanren_tan": "3-5-1",
+          "nisya_fuku": "3=5",
+          "sanren_fuku": "1=3=5",
+          "wide": "3=5",
+          "waku_tan": "3-5",
+          "waku_fuku": "3=5"
+        },
+        {
+          "race_id": "6220261122030005",
+          "venue": "広島",
+          "race_no": 5,
+          "race_name": "Ａ級特選",
+          "start_time": "10:10",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "森安崇之",
+              "p_win": 0.4367,
+              "p_top3": 0.8085,
+              "score": 93.04
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "谷元奎心",
+              "p_win": 0.2013,
+              "p_top3": 0.6197,
+              "score": 88.43
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "松岡孝高",
+              "p_win": 0.1692,
+              "p_top3": 0.4233,
+              "score": 83.61
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "佐竹和也",
+              "p_win": 0.0979,
+              "p_top3": 0.5656,
+              "score": 88.55
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "山口貴弘",
+              "p_win": 0.0432,
+              "p_top3": 0.1941,
+              "score": 82.37
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "井寺亮太",
+              "p_win": 0.0328,
+              "p_top3": 0.2276,
+              "score": 83.12
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "鈴木誠",
+              "p_win": 0.019,
+              "p_top3": 0.263,
+              "score": 84.23
+            }
+          ],
+          "nisya_tan": "4-3",
+          "sanren_tan": "4-3-7",
+          "nisya_fuku": "3=4",
+          "sanren_fuku": "3=4=7",
+          "wide": "3=4",
+          "waku_tan": "4-3",
+          "waku_fuku": "3=4"
+        },
+        {
+          "race_id": "6220261122030006",
+          "venue": "広島",
+          "race_no": 6,
+          "race_name": "Ａ級特選",
+          "start_time": "10:30",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "矢部駿人",
+              "p_win": 0.5054,
+              "p_top3": 0.8373,
+              "score": 92.66
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "市本隆司",
+              "p_win": 0.1583,
+              "p_top3": 0.5425,
+              "score": 85.73
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "原井剣也",
+              "p_win": 0.1203,
+              "p_top3": 0.3579,
+              "score": 88.55
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "福田要",
+              "p_win": 0.0961,
+              "p_top3": 0.3561,
+              "score": 89.04
+            },
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "青井賢治",
+              "p_win": 0.0852,
+              "p_top3": 0.6044,
+              "score": 91.78
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "安東英博",
+              "p_win": 0.02,
+              "p_top3": 0.1222,
+              "score": 83.44
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "高比良豪",
+              "p_win": 0.0146,
+              "p_top3": 0.0919,
+              "score": 83.9
+            }
+          ],
+          "nisya_tan": "4-1",
+          "sanren_tan": "4-1-7",
+          "nisya_fuku": "1=4",
+          "sanren_fuku": "1=4=7",
+          "wide": "1=4",
+          "waku_tan": "4-1",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "6220261122030007",
+          "venue": "広島",
+          "race_no": 7,
+          "race_name": "Ａ級決勝",
+          "start_time": "10:50",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "藤田楓",
+              "p_win": 0.4263,
+              "p_top3": 0.796,
+              "score": 94.74
+            },
+            {
+              "car_no": 7,
+              "frame": 1,
+              "name": "菅原裕太",
+              "p_win": 0.1892,
+              "p_top3": 0.7402,
+              "score": 96.2
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "齊藤英伊須",
+              "p_win": 0.1762,
+              "p_top3": 0.4498,
+              "score": 92.44
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "岡部陸斗",
+              "p_win": 0.1225,
+              "p_top3": 0.5226,
+              "score": 93.58
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "三澤康人",
+              "p_win": 0.0548,
+              "p_top3": 0.3276,
+              "score": 92.74
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "飯田辰哉",
+              "p_win": 0.0166,
+              "p_top3": 0.2434,
+              "score": 92.25
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "平石浩之",
+              "p_win": 0.0144,
+              "p_top3": 0.1407,
+              "score": 90.06
+            }
+          ],
+          "nisya_tan": "2-7",
+          "sanren_tan": "2-7-5",
+          "nisya_fuku": "2=7",
+          "sanren_fuku": "2=5=7",
+          "wide": "2=7",
+          "waku_tan": "2-1",
+          "waku_fuku": "1=2"
+        },
+        {
+          "race_id": "7520261124010001",
+          "venue": "松山",
+          "race_no": 1,
+          "race_name": "Ａ級予選",
+          "start_time": "15:45",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "矢口大樹",
+              "p_win": 0.3576,
+              "p_top3": 0.7666,
+              "score": 87.62
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "原真司",
+              "p_win": 0.1967,
+              "p_top3": 0.5741,
+              "score": 87.84
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "伊藤彰規",
+              "p_win": 0.1798,
+              "p_top3": 0.5504,
+              "score": 83.63
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "谷口友真",
+              "p_win": 0.1481,
+              "p_top3": 0.4061,
+              "score": 83.2
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "小西涼太",
+              "p_win": 0.0885,
+              "p_top3": 0.3847,
+              "score": 82.83
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "榊原洋",
+              "p_win": 0.0219,
+              "p_top3": 0.1337,
+              "score": 80.93
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "吉良勝信",
+              "p_win": 0.0075,
+              "p_top3": 0.1449,
+              "score": 79.0
+            }
+          ],
+          "nisya_tan": "1-2",
+          "sanren_tan": "1-5-2",
+          "nisya_fuku": "1=2",
+          "sanren_fuku": "1=2=5",
+          "wide": "1=2",
+          "waku_tan": "1-2",
+          "waku_fuku": "1=2"
+        },
+        {
+          "race_id": "7520261124010002",
+          "venue": "松山",
+          "race_no": 2,
+          "race_name": "Ａ級予選",
+          "start_time": "16:08",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "森柾斗",
+              "p_win": 0.4553,
+              "p_top3": 0.8366,
+              "score": 86.88
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "芳野匠",
+              "p_win": 0.3004,
+              "p_top3": 0.8459,
+              "score": 84.6
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "井上公利",
+              "p_win": 0.1166,
+              "p_top3": 0.3305,
+              "score": 83.24
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "油谷蒼",
+              "p_win": 0.0778,
+              "p_top3": 0.3299,
+              "score": 82.22
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "柴田祐也",
+              "p_win": 0.0276,
+              "p_top3": 0.207,
+              "score": 82.12
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "佐々木健司",
+              "p_win": 0.0152,
+              "p_top3": 0.1834,
+              "score": 81.9
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "鳥生知八",
+              "p_win": 0.0071,
+              "p_top3": 0.356,
+              "score": 79.26
+            }
+          ],
+          "nisya_tan": "5-1",
+          "sanren_tan": "5-1-2",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=2=5",
+          "wide": "1=5",
+          "waku_tan": "5-1",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "7520261124010003",
+          "venue": "松山",
+          "race_no": 3,
+          "race_name": "Ａ級予選",
+          "start_time": "16:33",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "尾崎悠生",
+              "p_win": 0.5153,
+              "p_top3": 0.7457,
+              "score": 88.8
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "新垣慶晃",
+              "p_win": 0.3365,
+              "p_top3": 0.5997,
+              "score": 86.12
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "良永浩一",
+              "p_win": 0.0733,
+              "p_top3": 0.5585,
+              "score": 83.8
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "小坂敏之",
+              "p_win": 0.0361,
+              "p_top3": 0.3469,
+              "score": 81.36
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "園田鉄兵",
+              "p_win": 0.0185,
+              "p_top3": 0.4262,
+              "score": 83.34
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "栗林巧",
+              "p_win": 0.0125,
+              "p_top3": 0.1837,
+              "score": 81.0
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "日浦崇道",
+              "p_win": 0.0078,
+              "p_top3": 0.0285,
+              "score": 75.62
+            }
+          ],
+          "nisya_tan": "3-5",
+          "sanren_tan": "3-5-4",
+          "nisya_fuku": "3=5",
+          "sanren_fuku": "3=4=5",
+          "wide": "3=5",
+          "waku_tan": "3-5",
+          "waku_fuku": "3=5"
+        },
+        {
+          "race_id": "7520261124010004",
+          "venue": "松山",
+          "race_no": 4,
+          "race_name": "Ａ級予選",
+          "start_time": "16:58",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "中山拓人",
+              "p_win": 0.473,
+              "p_top3": 0.8003,
+              "score": 89.81
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "成田直喜",
+              "p_win": 0.2224,
+              "p_top3": 0.8337,
+              "score": 87.43
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "三木健正",
+              "p_win": 0.1593,
+              "p_top3": 0.445,
+              "score": 83.14
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "櫻井太士",
+              "p_win": 0.0802,
+              "p_top3": 0.3825,
+              "score": 83.9
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "松岡晋乃介",
+              "p_win": 0.032,
+              "p_top3": 0.1236,
+              "score": 82.94
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "坂元洋行",
+              "p_win": 0.0283,
+              "p_top3": 0.1771,
+              "score": 84.08
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "亀井久幸",
+              "p_win": 0.0049,
+              "p_top3": 0.2077,
+              "score": 80.48
+            }
+          ],
+          "nisya_tan": "1-7",
+          "sanren_tan": "1-7-5",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=5=7",
+          "wide": "1=7",
+          "waku_tan": "1-3",
+          "waku_fuku": "1=3"
+        },
+        {
+          "race_id": "7520261124010005",
+          "venue": "松山",
+          "race_no": 5,
+          "race_name": "Ａ級初日特選",
+          "start_time": "17:24",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "畝木努",
+              "p_win": 0.3321,
+              "p_top3": 0.6553,
+              "score": 92.45
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "桑原亮",
+              "p_win": 0.2325,
+              "p_top3": 0.6744,
+              "score": 92.4
+            },
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "野口正則",
+              "p_win": 0.1798,
+              "p_top3": 0.3149,
+              "score": 91.14
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "出口謙一郎",
+              "p_win": 0.1451,
+              "p_top3": 0.3483,
+              "score": 91.87
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "高塩讓次",
+              "p_win": 0.0523,
+              "p_top3": 0.2753,
+              "score": 92.07
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "高橋優斗",
+              "p_win": 0.0308,
+              "p_top3": 0.3314,
+              "score": 89.37
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "上原龍",
+              "p_win": 0.0274,
+              "p_top3": 0.2048,
+              "score": 92.28
+            }
+          ],
+          "nisya_tan": "4-3",
+          "sanren_tan": "4-3-7",
+          "nisya_fuku": "3=4",
+          "sanren_fuku": "3=4=7",
+          "wide": "3=4",
+          "waku_tan": "4-3",
+          "waku_fuku": "3=4"
+        },
+        {
+          "race_id": "7520261124010006",
+          "venue": "松山",
+          "race_no": 6,
+          "race_name": "Ｓ級予選",
+          "start_time": "17:50",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "不破将登",
+              "p_win": 0.4354,
+              "p_top3": 0.7169,
+              "score": 98.09
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "月森亮輔",
+              "p_win": 0.2212,
+              "p_top3": 0.3905,
+              "score": 100.5
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "下井竜",
+              "p_win": 0.1576,
+              "p_top3": 0.4871,
+              "score": 95.37
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "池田良",
+              "p_win": 0.1087,
+              "p_top3": 0.4349,
+              "score": 103.93
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "平原啓多",
+              "p_win": 0.0421,
+              "p_top3": 0.2324,
+              "score": 98.08
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "柿沼信也",
+              "p_win": 0.0213,
+              "p_top3": 0.1767,
+              "score": 95.78
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "佐藤成人",
+              "p_win": 0.0137,
+              "p_top3": 0.2109,
+              "score": 94.53
+            }
+          ],
+          "nisya_tan": "2-3",
+          "sanren_tan": "2-3-5",
+          "nisya_fuku": "2=3",
+          "sanren_fuku": "2=3=5",
+          "wide": "2=3",
+          "waku_tan": "2-3",
+          "waku_fuku": "2=3"
+        },
+        {
+          "race_id": "7520261124010007",
+          "venue": "松山",
+          "race_no": 7,
+          "race_name": "Ｓ級予選",
+          "start_time": "18:16",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "久島尚樹",
+              "p_win": 0.3899,
+              "p_top3": 0.7809,
+              "score": 104.41
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "兼本将太",
+              "p_win": 0.2466,
+              "p_top3": 0.6136,
+              "score": 102.03
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "佐伯翔",
+              "p_win": 0.1695,
+              "p_top3": 0.5055,
+              "score": 100.48
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "鈴木浩太",
+              "p_win": 0.1232,
+              "p_top3": 0.4168,
+              "score": 97.61
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "佐藤愼太郎",
+              "p_win": 0.0395,
+              "p_top3": 0.4236,
+              "score": 100.05
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "木村幸希",
+              "p_win": 0.0181,
+              "p_top3": 0.1345,
+              "score": 96.58
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "山崎泰己",
+              "p_win": 0.0133,
+              "p_top3": 0.1036,
+              "score": 96.23
+            }
+          ],
+          "nisya_tan": "2-5",
+          "sanren_tan": "2-5-1",
+          "nisya_fuku": "2=5",
+          "sanren_fuku": "1=2=5",
+          "wide": "2=5",
+          "waku_tan": "2-5",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "7520261124010008",
+          "venue": "松山",
+          "race_no": 8,
+          "race_name": "Ｓ級予選",
+          "start_time": "18:42",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "南部翔大",
+              "p_win": 0.35,
+              "p_top3": 0.7836,
+              "score": 102.16
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "小原丈一郎",
+              "p_win": 0.2847,
+              "p_top3": 0.6673,
+              "score": 103.31
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "松村友和",
+              "p_win": 0.2514,
+              "p_top3": 0.7878,
+              "score": 101.85
+            },
+            {
+              "car_no": 7,
+              "frame": 5,
+              "name": "五十嵐綾",
+              "p_win": 0.0829,
+              "p_top3": 0.3796,
+              "score": 97.57
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "望月永悟",
+              "p_win": 0.0175,
+              "p_top3": 0.2367,
+              "score": 98.44
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "中園和剛",
+              "p_win": 0.0104,
+              "p_top3": 0.2751,
+              "score": 96.17
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "児玉慎一郎",
+              "p_win": 0.0032,
+              "p_top3": 0.0366,
+              "score": 90.1
+            }
+          ],
+          "nisya_tan": "5-4",
+          "sanren_tan": "5-3-4",
+          "nisya_fuku": "4=5",
+          "sanren_fuku": "3=4=5",
+          "wide": "4=5",
+          "waku_tan": "5-4",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "7520261124010009",
+          "venue": "松山",
+          "race_no": 9,
+          "race_name": "Ｓ級予選",
+          "start_time": "19:08",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "格清洋介",
+              "p_win": 0.3483,
+              "p_top3": 0.6155,
+              "score": 100.88
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "内藤秀久",
+              "p_win": 0.2672,
+              "p_top3": 0.712,
+              "score": 103.0
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "甲斐俊祐",
+              "p_win": 0.2103,
+              "p_top3": 0.5468,
+              "score": 100.93
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "坂本亮馬",
+              "p_win": 0.0872,
+              "p_top3": 0.4174,
+              "score": 97.0
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "庄子信弘",
+              "p_win": 0.0671,
+              "p_top3": 0.3867,
+              "score": 100.11
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "澤田義和",
+              "p_win": 0.0114,
+              "p_top3": 0.216,
+              "score": 96.87
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "山口泰生",
+              "p_win": 0.0085,
+              "p_top3": 0.0709,
+              "score": 93.8
+            }
+          ],
+          "nisya_tan": "7-5",
+          "sanren_tan": "7-5-4",
+          "nisya_fuku": "5=7",
+          "sanren_fuku": "4=5=7",
+          "wide": "5=7",
+          "waku_tan": "4-5",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "7520261124010010",
+          "venue": "松山",
+          "race_no": 10,
+          "race_name": "Ｓ級予選",
+          "start_time": "19:34",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "青木瑞樹",
+              "p_win": 0.4064,
+              "p_top3": 0.7916,
+              "score": 101.28
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "濱田浩司",
+              "p_win": 0.3914,
+              "p_top3": 0.8625,
+              "score": 103.85
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "福田滉",
+              "p_win": 0.0755,
+              "p_top3": 0.324,
+              "score": 98.6
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "柿本大貴",
+              "p_win": 0.0506,
+              "p_top3": 0.1873,
+              "score": 95.48
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "門田凌",
+              "p_win": 0.0402,
+              "p_top3": 0.5287,
+              "score": 97.39
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "西岡正一",
+              "p_win": 0.019,
+              "p_top3": 0.1341,
+              "score": 94.66
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "谷口明正",
+              "p_win": 0.0169,
+              "p_top3": 0.0853,
+              "score": 93.86
+            }
+          ],
+          "nisya_tan": "1-7",
+          "sanren_tan": "7-1-5",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=5=7",
+          "wide": "1=7",
+          "waku_tan": "1-4",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "7520261124010011",
+          "venue": "松山",
+          "race_no": 11,
+          "race_name": "Ｓ級予選",
+          "start_time": "20:01",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "石塚輪太郎",
+              "p_win": 0.5514,
+              "p_top3": 0.886,
+              "score": 107.29
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "藤井栄二",
+              "p_win": 0.2223,
+              "p_top3": 0.7967,
+              "score": 103.17
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "川口雄太",
+              "p_win": 0.1066,
+              "p_top3": 0.3822,
+              "score": 100.46
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "堤洋",
+              "p_win": 0.078,
+              "p_top3": 0.4117,
+              "score": 100.92
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "矢野昌彦",
+              "p_win": 0.0162,
+              "p_top3": 0.0769,
+              "score": 94.26
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "伊勢崎彰大",
+              "p_win": 0.0158,
+              "p_top3": 0.2589,
+              "score": 98.47
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "成清貴之",
+              "p_win": 0.0097,
+              "p_top3": 0.2161,
+              "score": 96.3
+            }
+          ],
+          "nisya_tan": "3-7",
+          "sanren_tan": "3-7-4",
+          "nisya_fuku": "3=7",
+          "sanren_fuku": "3=4=7",
+          "wide": "3=7",
+          "waku_tan": "3-4",
+          "waku_fuku": "3=4"
+        },
+        {
+          "race_id": "7520261124010012",
+          "venue": "松山",
+          "race_no": 12,
+          "race_name": "Ｓ級初特選",
+          "start_time": "20:30",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "吉田有希",
+              "p_win": 0.3452,
+              "p_top3": 0.6651,
+              "score": 107.25
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "片岡迪之",
+              "p_win": 0.2216,
+              "p_top3": 0.6125,
+              "score": 106.13
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "大西貴晃",
+              "p_win": 0.1711,
+              "p_top3": 0.3676,
+              "score": 106.07
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "伊藤颯馬",
+              "p_win": 0.09,
+              "p_top3": 0.2735,
+              "score": 105.9
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "小松崎大地",
+              "p_win": 0.0881,
+              "p_top3": 0.2204,
+              "score": 105.11
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "山形一気",
+              "p_win": 0.0599,
+              "p_top3": 0.3501,
+              "score": 107.2
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "田中勇二",
+              "p_win": 0.024,
+              "p_top3": 0.3525,
+              "score": 105.31
+            }
+          ],
+          "nisya_tan": "1-7",
+          "sanren_tan": "1-7-5",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=5=7",
+          "wide": "1=7",
+          "waku_tan": "1-3",
+          "waku_fuku": "1=3"
+        },
+        {
+          "race_id": "8420261123020001",
+          "venue": "武雄",
+          "race_no": 1,
+          "race_name": "チャレンジ一般",
+          "start_time": "09:00",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "田山誠",
+              "p_win": 0.6876,
+              "p_top3": 0.882,
+              "score": 69.18
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "南和夫",
+              "p_win": 0.118,
+              "p_top3": 0.5396,
+              "score": 64.78
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "須々田大昇",
+              "p_win": 0.1011,
+              "p_top3": 0.6882,
+              "score": 70.37
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "奥山雅士",
+              "p_win": 0.0508,
+              "p_top3": 0.3865,
+              "score": 68.66
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "山崎明寛",
+              "p_win": 0.0258,
+              "p_top3": 0.2282,
+              "score": 67.69
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "長岡豪",
+              "p_win": 0.0167,
+              "p_top3": 0.1267,
+              "score": 64.78
+            }
+          ],
+          "nisya_tan": "2-6",
+          "sanren_tan": "2-1-6",
+          "nisya_fuku": "2=6",
+          "sanren_fuku": "1=2=6",
+          "wide": "2=6",
+          "waku_tan": "2-6",
+          "waku_fuku": "2=6"
+        },
+        {
+          "race_id": "8420261123020002",
+          "venue": "武雄",
+          "race_no": 2,
+          "race_name": "チャレンジ一般",
+          "start_time": "09:20",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "福地晶",
+              "p_win": 0.7599,
+              "p_top3": 0.946,
+              "score": 75.58
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "松本充生",
+              "p_win": 0.1052,
+              "p_top3": 0.4814,
+              "score": 67.85
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "相良勝美",
+              "p_win": 0.0821,
+              "p_top3": 0.6181,
+              "score": 67.86
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "近藤直幹",
+              "p_win": 0.0337,
+              "p_top3": 0.267,
+              "score": 65.25
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "小林高志",
+              "p_win": 0.0141,
+              "p_top3": 0.4474,
+              "score": 68.0
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "井上典善",
+              "p_win": 0.005,
+              "p_top3": 0.082,
+              "score": 63.78
+            }
+          ],
+          "nisya_tan": "4-3",
+          "sanren_tan": "4-5-2",
+          "nisya_fuku": "3=4",
+          "sanren_fuku": "2=4=5",
+          "wide": "3=4",
+          "waku_tan": "4-3",
+          "waku_fuku": "3=4"
+        },
+        {
+          "race_id": "8420261123020003",
+          "venue": "武雄",
+          "race_no": 3,
+          "race_name": "チャレンジ準決勝",
+          "start_time": "09:40",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "中西将太郎",
+              "p_win": 0.4652,
+              "p_top3": 0.8566,
+              "score": 77.82
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "佐藤魁皇",
+              "p_win": 0.2312,
+              "p_top3": 0.6681,
+              "score": 76.47
+            },
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "菱沼元樹",
+              "p_win": 0.1985,
+              "p_top3": 0.5149,
+              "score": 74.76
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "加藤昌平",
+              "p_win": 0.05,
+              "p_top3": 0.4517,
+              "score": 73.41
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "古川大輔",
+              "p_win": 0.0385,
+              "p_top3": 0.2022,
+              "score": 72.4
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "坂本智哉",
+              "p_win": 0.012,
+              "p_top3": 0.125,
+              "score": 70.38
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "檀雄二",
+              "p_win": 0.0047,
+              "p_top3": 0.1885,
+              "score": 68.2
+            }
+          ],
+          "nisya_tan": "2-5",
+          "sanren_tan": "2-5-7",
+          "nisya_fuku": "2=5",
+          "sanren_fuku": "2=5=7",
+          "wide": "2=5",
+          "waku_tan": "2-5",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "8420261123020004",
+          "venue": "武雄",
+          "race_no": 4,
+          "race_name": "チャレンジ準決勝",
+          "start_time": "10:00",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "渡邊諒馬",
+              "p_win": 0.803,
+              "p_top3": 0.9588,
+              "score": 79.13
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "高谷敏史",
+              "p_win": 0.0944,
+              "p_top3": 0.4277,
+              "score": 75.29
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "鈴木広人",
+              "p_win": 0.0366,
+              "p_top3": 0.2706,
+              "score": 71.77
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "曽我部匡史",
+              "p_win": 0.0361,
+              "p_top3": 0.499,
+              "score": 68.66
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "小田桐義継",
+              "p_win": 0.0189,
+              "p_top3": 0.2674,
+              "score": 71.7
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "安坂洋一",
+              "p_win": 0.0072,
+              "p_top3": 0.1283,
+              "score": 70.08
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "重一徳",
+              "p_win": 0.0037,
+              "p_top3": 0.1418,
+              "score": 67.81
+            }
+          ],
+          "nisya_tan": "3-2",
+          "sanren_tan": "3-2-7",
+          "nisya_fuku": "2=3",
+          "sanren_fuku": "2=3=7",
+          "wide": "2=3",
+          "waku_tan": "3-2",
+          "waku_fuku": "2=3"
+        },
+        {
+          "race_id": "8420261123020005",
+          "venue": "武雄",
+          "race_no": 5,
+          "race_name": "チャレンジ準決勝",
+          "start_time": "10:20",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "田崎隼翔",
+              "p_win": 0.6721,
+              "p_top3": 0.9314,
+              "score": 79.33
+            },
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "南部亮太",
+              "p_win": 0.1461,
+              "p_top3": 0.6723,
+              "score": 75.61
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "財満伊織",
+              "p_win": 0.1123,
+              "p_top3": 0.5749,
+              "score": 72.87
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "門馬琢麿",
+              "p_win": 0.0337,
+              "p_top3": 0.2078,
+              "score": 69.15
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "早坂道義",
+              "p_win": 0.0192,
+              "p_top3": 0.3352,
+              "score": 71.21
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "三登誉哲",
+              "p_win": 0.01,
+              "p_top3": 0.1118,
+              "score": 65.7
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "爲田学",
+              "p_win": 0.0066,
+              "p_top3": 0.2578,
+              "score": 69.66
+            }
+          ],
+          "nisya_tan": "5-7",
+          "sanren_tan": "5-7-1",
+          "nisya_fuku": "5=7",
+          "sanren_fuku": "1=5=7",
+          "wide": "5=7",
+          "waku_tan": "5-2",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "8420261123020006",
+          "venue": "武雄",
+          "race_no": 6,
+          "race_name": "ガールズ予選２",
+          "start_time": "10:40",
+          "segment": "girls",
+          "riders": [
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "西島叶子",
+              "p_win": 0.6269,
+              "p_top3": 0.9183,
+              "score": 53.96
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "青木美保",
+              "p_win": 0.2414,
+              "p_top3": 0.8527,
+              "score": 53.51
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "高橋美沙紀",
+              "p_win": 0.0659,
+              "p_top3": 0.4137,
+              "score": 52.13
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "中村由香里",
+              "p_win": 0.0615,
+              "p_top3": 0.4885,
+              "score": 52.75
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "布居光",
+              "p_win": 0.0039,
+              "p_top3": 0.1939,
+              "score": 49.36
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "牧田咲子",
+              "p_win": 0.0005,
+              "p_top3": 0.0648,
+              "score": 46.8
+            }
+          ],
+          "nisya_tan": "6-5",
+          "sanren_tan": "6-5-4",
+          "nisya_fuku": "5=6",
+          "sanren_fuku": "4=5=6",
+          "wide": "5=6",
+          "waku_tan": "6-5",
+          "waku_fuku": "5=6"
+        },
+        {
+          "race_id": "8420261123020007",
+          "venue": "武雄",
+          "race_no": 7,
+          "race_name": "ガールズ予選２",
+          "start_time": "11:00",
+          "segment": "girls",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "緒方詩央里",
+              "p_win": 0.8332,
+              "p_top3": 0.9731,
+              "score": 54.12
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "平子結菜",
+              "p_win": 0.1176,
+              "p_top3": 0.6864,
+              "score": 52.3
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "山本知佳",
+              "p_win": 0.0182,
+              "p_top3": 0.1842,
+              "score": 49.8
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "枝光美奈",
+              "p_win": 0.0146,
+              "p_top3": 0.2349,
+              "score": 51.59
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "清水美海",
+              "p_win": 0.0059,
+              "p_top3": 0.1279,
+              "score": 50.43
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "谷元音羽",
+              "p_win": 0.0054,
+              "p_top3": 0.1015,
+              "score": 49.59
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "普久原美海",
+              "p_win": 0.0052,
+              "p_top3": 0.1626,
+              "score": 50.18
+            }
+          ],
+          "nisya_tan": "7-3",
+          "sanren_tan": "7-3-1",
+          "nisya_fuku": "3=7",
+          "sanren_fuku": "1=3=7",
+          "wide": "3=7",
+          "waku_tan": "2-3",
+          "waku_fuku": "2=3"
+        },
+        {
+          "race_id": "3820261124010001",
+          "venue": "静岡",
+          "race_no": 1,
+          "race_name": "Ａ級予選",
+          "start_time": "11:05",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "本多哲也",
+              "p_win": 0.4079,
+              "p_top3": 0.7307,
+              "score": 88.08
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "山田裕哉",
+              "p_win": 0.2286,
+              "p_top3": 0.6499,
+              "score": 89.71
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "大竹哲也",
+              "p_win": 0.1595,
+              "p_top3": 0.6996,
+              "score": 85.4
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "中武三四郎",
+              "p_win": 0.104,
+              "p_top3": 0.4174,
+              "score": 82.03
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "山本康旗",
+              "p_win": 0.078,
+              "p_top3": 0.2145,
+              "score": 81.37
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "田口守",
+              "p_win": 0.0131,
+              "p_top3": 0.077,
+              "score": 78.37
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "河野淳吾",
+              "p_win": 0.0089,
+              "p_top3": 0.1902,
+              "score": 80.21
+            }
+          ],
+          "nisya_tan": "5-1",
+          "sanren_tan": "5-2-1",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=2=5",
+          "wide": "1=5",
+          "waku_tan": "5-1",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "3820261124010002",
+          "venue": "静岡",
+          "race_no": 2,
+          "race_name": "Ａ級予選",
+          "start_time": "11:29",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "徳永泰粋",
+              "p_win": 0.4718,
+              "p_top3": 0.9181,
+              "score": 89.25
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "坂本拓也",
+              "p_win": 0.2449,
+              "p_top3": 0.561,
+              "score": 87.54
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "隅貴史",
+              "p_win": 0.2257,
+              "p_top3": 0.8426,
+              "score": 87.45
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "山口慎吾",
+              "p_win": 0.0438,
+              "p_top3": 0.3389,
+              "score": 84.08
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "杉浦康一",
+              "p_win": 0.0067,
+              "p_top3": 0.1496,
+              "score": 78.29
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "中村賢二",
+              "p_win": 0.0036,
+              "p_top3": 0.0694,
+              "score": 78.91
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "濱口健二",
+              "p_win": 0.0034,
+              "p_top3": 0.0992,
+              "score": 76.11
+            }
+          ],
+          "nisya_tan": "1-4",
+          "sanren_tan": "1-7-4",
+          "nisya_fuku": "1=4",
+          "sanren_fuku": "1=4=7",
+          "wide": "1=4",
+          "waku_tan": "1-4",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "3820261124010003",
+          "venue": "静岡",
+          "race_no": 3,
+          "race_name": "Ａ級予選",
+          "start_time": "11:54",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "田中衛太",
+              "p_win": 0.5618,
+              "p_top3": 0.8826,
+              "score": 83.42
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "小坂丈",
+              "p_win": 0.1974,
+              "p_top3": 0.6762,
+              "score": 88.14
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "好永晃",
+              "p_win": 0.1581,
+              "p_top3": 0.7639,
+              "score": 88.37
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "樋口瑛土",
+              "p_win": 0.0344,
+              "p_top3": 0.3446,
+              "score": 82.95
+            },
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "辰己豊",
+              "p_win": 0.0323,
+              "p_top3": 0.4028,
+              "score": 85.41
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "薮謙治",
+              "p_win": 0.0093,
+              "p_top3": 0.1195,
+              "score": 82.4
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "細沼健治",
+              "p_win": 0.0067,
+              "p_top3": 0.0763,
+              "score": 76.66
+            }
+          ],
+          "nisya_tan": "4-1",
+          "sanren_tan": "4-2-1",
+          "nisya_fuku": "1=4",
+          "sanren_fuku": "1=2=4",
+          "wide": "1=4",
+          "waku_tan": "4-1",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "3820261124010004",
+          "venue": "静岡",
+          "race_no": 4,
+          "race_name": "Ａ級予選",
+          "start_time": "12:20",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "金田涼馬",
+              "p_win": 0.4159,
+              "p_top3": 0.851,
+              "score": 89.69
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "櫻井丈",
+              "p_win": 0.373,
+              "p_top3": 0.8602,
+              "score": 87.33
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "白濱一平",
+              "p_win": 0.0642,
+              "p_top3": 0.2364,
+              "score": 81.7
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "林佳宗依",
+              "p_win": 0.0575,
+              "p_top3": 0.1955,
+              "score": 79.38
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "山田晃久",
+              "p_win": 0.0561,
+              "p_top3": 0.3201,
+              "score": 86.8
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "飯尾主税",
+              "p_win": 0.0266,
+              "p_top3": 0.5834,
+              "score": 83.26
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "船曳義之",
+              "p_win": 0.0068,
+              "p_top3": 0.085,
+              "score": 78.93
+            }
+          ],
+          "nisya_tan": "5-1",
+          "sanren_tan": "1-5-7",
+          "nisya_fuku": "1=5",
+          "sanren_fuku": "1=5=7",
+          "wide": "1=5",
+          "waku_tan": "5-1",
+          "waku_fuku": "1=5"
+        },
+        {
+          "race_id": "3820261124010005",
+          "venue": "静岡",
+          "race_no": 5,
+          "race_name": "Ａ級初日特選",
+          "start_time": "12:47",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "小田倉勇二",
+              "p_win": 0.3911,
+              "p_top3": 0.6872,
+              "score": 95.09
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "吉田智哉",
+              "p_win": 0.1724,
+              "p_top3": 0.4138,
+              "score": 94.38
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "岡部伶音",
+              "p_win": 0.1583,
+              "p_top3": 0.5841,
+              "score": 92.76
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "常次勇人",
+              "p_win": 0.1421,
+              "p_top3": 0.3517,
+              "score": 91.93
+            },
+            {
+              "car_no": 7,
+              "frame": 2,
+              "name": "藤井將",
+              "p_win": 0.0678,
+              "p_top3": 0.3693,
+              "score": 91.31
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "北野武史",
+              "p_win": 0.0418,
+              "p_top3": 0.3068,
+              "score": 93.51
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "長井優斗",
+              "p_win": 0.0265,
+              "p_top3": 0.3163,
+              "score": 89.8
+            }
+          ],
+          "nisya_tan": "2-1",
+          "sanren_tan": "2-4-1",
+          "nisya_fuku": "1=2",
+          "sanren_fuku": "1=2=4",
+          "wide": "1=2",
+          "waku_tan": "2-1",
+          "waku_fuku": "1=2"
+        },
+        {
+          "race_id": "3820261124010006",
+          "venue": "静岡",
+          "race_no": 6,
+          "race_name": "Ｓ級予選",
+          "start_time": "13:15",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "野口裕史",
+              "p_win": 0.3394,
+              "p_top3": 0.5858,
+              "score": 99.85
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "掛水泰範",
+              "p_win": 0.2089,
+              "p_top3": 0.5908,
+              "score": 103.72
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "斉藤樂",
+              "p_win": 0.2017,
+              "p_top3": 0.4504,
+              "score": 102.6
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "才迫開",
+              "p_win": 0.1553,
+              "p_top3": 0.4277,
+              "score": 102.27
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "山本紳貴",
+              "p_win": 0.0507,
+              "p_top3": 0.2659,
+              "score": 96.83
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "佐々木翔一",
+              "p_win": 0.0304,
+              "p_top3": 0.353,
+              "score": 99.25
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "齋藤登志信",
+              "p_win": 0.0136,
+              "p_top3": 0.1459,
+              "score": 96.63
+            }
+          ],
+          "nisya_tan": "7-5",
+          "sanren_tan": "7-5-3",
+          "nisya_fuku": "5=7",
+          "sanren_fuku": "3=5=7",
+          "wide": "5=7",
+          "waku_tan": "4-5",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "3820261124010007",
+          "venue": "静岡",
+          "race_no": 7,
+          "race_name": "Ｓ級予選",
+          "start_time": "13:43",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "梶原海斗",
+              "p_win": 0.4012,
+              "p_top3": 0.6543,
+              "score": 102.58
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "小林弘和",
+              "p_win": 0.2356,
+              "p_top3": 0.7167,
+              "score": 102.56
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "貴志修己",
+              "p_win": 0.2053,
+              "p_top3": 0.5722,
+              "score": 103.19
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "大洞翔平",
+              "p_win": 0.0524,
+              "p_top3": 0.2946,
+              "score": 96.83
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "鈴木謙太郎",
+              "p_win": 0.042,
+              "p_top3": 0.1504,
+              "score": 94.92
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "内藤高裕",
+              "p_win": 0.0404,
+              "p_top3": 0.22,
+              "score": 98.12
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "中本匠栄",
+              "p_win": 0.0232,
+              "p_top3": 0.3561,
+              "score": 99.62
+            }
+          ],
+          "nisya_tan": "5-2",
+          "sanren_tan": "5-2-3",
+          "nisya_fuku": "2=5",
+          "sanren_fuku": "2=3=5",
+          "wide": "2=5",
+          "waku_tan": "5-2",
+          "waku_fuku": "2=5"
+        },
+        {
+          "race_id": "3820261124010008",
+          "venue": "静岡",
+          "race_no": 8,
+          "race_name": "Ｓ級予選",
+          "start_time": "14:11",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "菊池竣太朗",
+              "p_win": 0.3545,
+              "p_top3": 0.6153,
+              "score": 101.75
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "児玉虎之介",
+              "p_win": 0.2923,
+              "p_top3": 0.6509,
+              "score": 102.73
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "加藤圭一",
+              "p_win": 0.123,
+              "p_top3": 0.4591,
+              "score": 102.25
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "鈴木伸之",
+              "p_win": 0.1209,
+              "p_top3": 0.4154,
+              "score": 96.67
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "保田浩輔",
+              "p_win": 0.0625,
+              "p_top3": 0.1993,
+              "score": 95.95
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "近藤誠二",
+              "p_win": 0.0407,
+              "p_top3": 0.2509,
+              "score": 96.94
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "伊豆田浩人",
+              "p_win": 0.006,
+              "p_top3": 0.1317,
+              "score": 94.5
+            }
+          ],
+          "nisya_tan": "1-7",
+          "sanren_tan": "1-7-3",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=3=7",
+          "wide": "1=7",
+          "waku_tan": "1-4",
+          "waku_fuku": "1=4"
+        },
+        {
+          "race_id": "3820261124010009",
+          "venue": "静岡",
+          "race_no": 9,
+          "race_name": "Ｓ級予選",
+          "start_time": "14:39",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "東龍之介",
+              "p_win": 0.5712,
+              "p_top3": 0.9044,
+              "score": 107.09
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "日高裕太",
+              "p_win": 0.2817,
+              "p_top3": 0.8394,
+              "score": 102.38
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "瀬戸栄作",
+              "p_win": 0.0652,
+              "p_top3": 0.2701,
+              "score": 97.66
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "山口敦也",
+              "p_win": 0.0296,
+              "p_top3": 0.2523,
+              "score": 99.73
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "天田裕輝",
+              "p_win": 0.0273,
+              "p_top3": 0.6167,
+              "score": 97.14
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "北川大五郎",
+              "p_win": 0.0209,
+              "p_top3": 0.1275,
+              "score": 94.28
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "佐野梅一",
+              "p_win": 0.004,
+              "p_top3": 0.0472,
+              "score": 90.81
+            }
+          ],
+          "nisya_tan": "7-1",
+          "sanren_tan": "7-1-4",
+          "nisya_fuku": "1=7",
+          "sanren_fuku": "1=4=7",
+          "wide": "1=7",
+          "waku_tan": "3-1",
+          "waku_fuku": "1=3"
+        },
+        {
+          "race_id": "3820261124010010",
+          "venue": "静岡",
+          "race_no": 10,
+          "race_name": "Ｓ級予選",
+          "start_time": "15:07",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "渡邉一成",
+              "p_win": 0.5354,
+              "p_top3": 0.8041,
+              "score": 104.93
+            },
+            {
+              "car_no": 7,
+              "frame": 4,
+              "name": "中田雄喜",
+              "p_win": 0.1473,
+              "p_top3": 0.6406,
+              "score": 100.56
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "山根将太",
+              "p_win": 0.1439,
+              "p_top3": 0.4878,
+              "score": 97.0
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "黒田淳",
+              "p_win": 0.1241,
+              "p_top3": 0.4828,
+              "score": 98.86
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "小林大介",
+              "p_win": 0.0187,
+              "p_top3": 0.2745,
+              "score": 97.34
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "野村典嗣",
+              "p_win": 0.0159,
+              "p_top3": 0.1714,
+              "score": 94.84
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "三ツ石康洋",
+              "p_win": 0.0146,
+              "p_top3": 0.0842,
+              "score": 94.0
+            }
+          ],
+          "nisya_tan": "2-7",
+          "sanren_tan": "2-7-1",
+          "nisya_fuku": "2=7",
+          "sanren_fuku": "1=2=7",
+          "wide": "2=7",
+          "waku_tan": "2-4",
+          "waku_fuku": "2=4"
+        },
+        {
+          "race_id": "3820261124010011",
+          "venue": "静岡",
+          "race_no": 11,
+          "race_name": "Ｓ級予選",
+          "start_time": "15:37",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "福永大智",
+              "p_win": 0.6107,
+              "p_top3": 0.8469,
+              "score": 105.91
+            },
+            {
+              "car_no": 7,
+              "frame": 5,
+              "name": "三澤優樹",
+              "p_win": 0.1612,
+              "p_top3": 0.4871,
+              "score": 98.0
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "元砂勇雪",
+              "p_win": 0.1069,
+              "p_top3": 0.67,
+              "score": 98.82
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "荻原尚人",
+              "p_win": 0.0786,
+              "p_top3": 0.4167,
+              "score": 99.07
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "石川裕二",
+              "p_win": 0.0255,
+              "p_top3": 0.2975,
+              "score": 95.53
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "上田裕和",
+              "p_win": 0.0127,
+              "p_top3": 0.3081,
+              "score": 95.55
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "吉田裕全",
+              "p_win": 0.0043,
+              "p_top3": 0.044,
+              "score": 91.0
+            }
+          ],
+          "nisya_tan": "4-7",
+          "sanren_tan": "4-5-7",
+          "nisya_fuku": "4=7",
+          "sanren_fuku": "4=5=7",
+          "wide": "4=7",
+          "waku_tan": "4-5",
+          "waku_fuku": "4=5"
+        },
+        {
+          "race_id": "3820261124010012",
+          "venue": "静岡",
+          "race_no": 12,
+          "race_name": "Ｓ級初特選",
+          "start_time": "16:15",
+          "segment": "men",
+          "riders": [
+            {
+              "car_no": 7,
+              "frame": 3,
+              "name": "原井博斗",
+              "p_win": 0.2722,
+              "p_top3": 0.6101,
+              "score": 109.16
+            },
+            {
+              "car_no": 5,
+              "frame": 5,
+              "name": "皿屋豊",
+              "p_win": 0.2138,
+              "p_top3": 0.4034,
+              "score": 105.3
+            },
+            {
+              "car_no": 3,
+              "frame": 3,
+              "name": "太田竜馬",
+              "p_win": 0.1923,
+              "p_top3": 0.3553,
+              "score": 104.56
+            },
+            {
+              "car_no": 2,
+              "frame": 2,
+              "name": "岡村潤",
+              "p_win": 0.1484,
+              "p_top3": 0.4843,
+              "score": 107.5
+            },
+            {
+              "car_no": 6,
+              "frame": 6,
+              "name": "塩島嵩一朗",
+              "p_win": 0.0831,
+              "p_top3": 0.2644,
+              "score": 102.67
+            },
+            {
+              "car_no": 1,
+              "frame": 1,
+              "name": "藤田勝也",
+              "p_win": 0.0507,
+              "p_top3": 0.229,
+              "score": 103.92
+            },
+            {
+              "car_no": 4,
+              "frame": 4,
+              "name": "佐々木雄一",
+              "p_win": 0.0396,
+              "p_top3": 0.3172,
+              "score": 105.4
+            }
+          ],
+          "nisya_tan": "7-5",
+          "sanren_tan": "7-5-2",
+          "nisya_fuku": "5=7",
+          "sanren_fuku": "2=5=7",
+          "wide": "5=7",
+          "waku_tan": "3-5",
+          "waku_fuku": "3=5"
         }
       ]
     }
